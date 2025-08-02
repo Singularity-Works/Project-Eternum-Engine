@@ -23,7 +23,7 @@ It focuses on **data structures, algorithms, and modular systems** inspired by g
 ### Clone & Build
 
 ```bash
-git clone https://github.com/<your-org>/eternum-engine.git
+git clone https://github.com/Singularity-Works/eternum-engine.git
 cd eternum-engine
 mkdir build && cd build
 cmake ..
