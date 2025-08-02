@@ -30,4 +30,11 @@
 *.exe
 *.out
 *.app
+
+# Debug files
 Concept.docx
+
+# Build directories
+build/
+cmake-build-debug/
+
