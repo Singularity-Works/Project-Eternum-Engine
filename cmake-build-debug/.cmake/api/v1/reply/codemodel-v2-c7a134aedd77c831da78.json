@@ -1,0 +1,69 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "EternumEngine",
+					"targetIndexes" : 
+					[
+						0,
+						1
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "eternum-engine::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-eternum-engine-Debug-e84e46e60c2ca8b5cf8e.json",
+					"name" : "eternum-engine",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "eternum-tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-eternum-tests-Debug-1a16746e85fd8666adcf.json",
+					"name" : "eternum-tests",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/nekoy/Desktop/Project-Eternum-Engine/cmake-build-debug",
+		"source" : "C:/Users/nekoy/Desktop/Project-Eternum-Engine"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}

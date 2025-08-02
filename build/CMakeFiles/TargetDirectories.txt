@@ -1,0 +1,5 @@
+C:/Users/nekoy/Desktop/Project-Eternum-Engine/build/CMakeFiles/eternum-engine.dir
+C:/Users/nekoy/Desktop/Project-Eternum-Engine/build/CMakeFiles/eternum-tests.dir
+C:/Users/nekoy/Desktop/Project-Eternum-Engine/build/CMakeFiles/RUN_TESTS.dir
+C:/Users/nekoy/Desktop/Project-Eternum-Engine/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/nekoy/Desktop/Project-Eternum-Engine/build/CMakeFiles/ZERO_CHECK.dir
