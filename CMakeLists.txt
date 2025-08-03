@@ -9,11 +9,12 @@ include_directories(
         "Eternum Engine/src"
         "Eternum Engine/src/Core/pch"
         "Eternum Engine/src/third_party"
+        "Eternum Engine/src/third_party/googletest/include"
 )
 
 # Gather source files
 file(GLOB_RECURSE ENGINE_SRC CONFIGURE_DEPENDS "Eternum Engine/src/*.cpp" "Eternum Engine/src/*.h")
-file(GLOB_RECURSE TEST_SRC CONFIGURE_DEPENDS "tests/*.cpp")
+file(GLOB_RECURSE TEST_SRC CONFIGURE_DEPENDS "Unit Tests/*.cpp")
 
 # Main executable
 add_executable(eternum-engine ${ENGINE_SRC})
@@ -21,10 +22,17 @@ add_executable(eternum-engine ${ENGINE_SRC})
 # Precompiled headers for main executable
 target_precompile_headers(eternum-engine PRIVATE "Eternum Engine/src/Core/pch/pch.h")
 
+# --------------------------------------------------------------------
+# GoogleTest (vendored in src/third_party/googletest)
+# --------------------------------------------------------------------
+add_subdirectory("Eternum Engine/third_party/googletest")
+
 # Unit tests
 enable_testing()
 add_executable(eternum-tests ${TEST_SRC} ${ENGINE_SRC})
-target_include_directories(eternum-tests PRIVATE "Eternum Engine/src/third_party")
+target_include_directories(eternum-tests PRIVATE "Eternum Engine/src/third_party/googletest/include")
+
+target_link_libraries(eternum-tests PRIVATE gtest_main)
 
 # Precompiled headers for tests
 target_precompile_headers(eternum-tests PRIVATE "Eternum Engine/src/Core/pch/pch.h")
