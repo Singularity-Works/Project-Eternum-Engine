@@ -16,6 +16,8 @@
 
 #include <pch.h>
 
+/// @brief Base class for all systems in the Eternum Engine.
+///
 class System
 {
     // ----------------------------------------------------------------
@@ -32,7 +34,10 @@ public:
     }
 
     // Called once when the system is created
-    virtual void Init() {}
+    virtual void Init()
+    {
+        std::cout << "Initializing system: " << m_Name << std::endl;
+    }
 
     // Called every frame before fixed updates
     virtual void Update(double deltaTime) {}
@@ -56,4 +61,6 @@ private:
     std::string m_Name; // Name of the system for identification
 };
 
+
+#include <Systems/System Registry/SystemRegistry.h>
 #endif // SYSTEM_H

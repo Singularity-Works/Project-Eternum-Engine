@@ -1,0 +1,2 @@
+C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\ar.exe qc libeternum-engine-lib.a "CMakeFiles/eternum-engine-lib.dir/Eternum_Engine/src/Core/Runtime/Runtime.cpp.obj" "CMakeFiles/eternum-engine-lib.dir/Eternum_Engine/src/Core/pch/pch.cpp.obj" "CMakeFiles/eternum-engine-lib.dir/Eternum_Engine/src/Systems/Input/InputSystem.cpp.obj"
+C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\ranlib.exe libeternum-engine-lib.a

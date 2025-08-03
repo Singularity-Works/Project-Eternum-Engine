@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "Eternum Engine/third_party/googletest",
+		"source" : "Eternum Engine/third_party/googletest"
+	}
+}

@@ -3,7 +3,7 @@
 * -----------------------------------------------------------------------------------------
 * File: InputSystem
 * Description:
-*       Handles
+*       Implements the Input System for handling user input.
 *
 * Author:     Jax Clayton
 * Created:    8/2/2025
@@ -12,14 +12,15 @@
 #ifndef INPUTSYSTEM_H
 #define INPUTSYSTEM_H
 
-#include "Systems/system.h"
+#pragma once
+#include <Systems/system.h>
 
 class InputSystem final : public System
 {
 public:
 
-    explicit InputSystem() : System("Input System") {}
 
+    /// @brief Initializes the Input System.
     void Init() override;
 
     void Update(double deltaTime) override;
@@ -29,7 +30,33 @@ public:
     void Render() override;
 
     void Shutdown() override;
+
+    /// @brief Checks if a key has been pressed without blocking.
+    /// @return true if a key was pressed, false otherwise.
+    static bool KeyPressed();
+
+    // ----------------------------------------------------------------
+    // Singleton pattern to ensure only one instance of InputSystem exists
+    // ----------------------------------------------------------------
+    static std::shared_ptr<InputSystem> GetInstance()
+    {
+        static std::shared_ptr<InputSystem> instance(new InputSystem());
+        return instance;
+    }
+
+private:
+
+    // Private constructor to enforce singleton pattern
+    // This ensures that InputSystem can only be created through GetInstance()
+    explicit InputSystem() : System("Input System") {}
+
 };
+
+static InputSystem* Input()
+{
+    return InputSystem::GetInstance().get();
+}
+
 
 
 #endif //INPUTSYSTEM_H

@@ -31,6 +31,14 @@
 
 #ifdef _WIN32
    #include <Windows.h>
-#endif
+    #include <conio.h>
+#else // ifdef _WIN32
+    #include <unistd.h>
+    #include <termios.h>
+    #include <fcntl.h>
+#endif // ifdef _WIN32
+
+// Internal headers
+#include <Systems/system.h>
 
 #endif //PCH_H

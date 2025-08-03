@@ -1,0 +1,268 @@
+{
+	"artifacts" : 
+	[
+		{
+			"path" : "eternum-tests.exe"
+		},
+		{
+			"path" : "eternum-tests.pdb"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_executable",
+			"target_link_libraries",
+			"include_directories",
+			"target_precompile_headers"
+		],
+		"files" : 
+		[
+			"CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 51,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 52,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 10,
+				"parent" : 0
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 53,
+				"parent" : 0
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "-std=gnu++17 -fdiagnostics-color=always"
+				},
+				{
+					"fragment" : "-Winvalid-pch -x c++-header -include \"C:/Users/nekoy/OneDrive - DigiPen Institute of Technology/Documents/GitHub/Project-Eternum-Engine/CMakeFiles/eternum-tests.dir/cmake_pch.hxx\""
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 3,
+					"path" : "C:/Users/nekoy/OneDrive - DigiPen Institute of Technology/Documents/GitHub/Project-Eternum-Engine/Eternum Engine/src"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "C:/Users/nekoy/OneDrive - DigiPen Institute of Technology/Documents/GitHub/Project-Eternum-Engine/Eternum Engine/src/Core/pch"
+				},
+				{
+					"backtrace" : 2,
+					"isSystem" : true,
+					"path" : "C:/Users/nekoy/OneDrive - DigiPen Institute of Technology/Documents/GitHub/Project-Eternum-Engine/Eternum Engine/third_party/googletest/googletest/include"
+				},
+				{
+					"backtrace" : 2,
+					"isSystem" : true,
+					"path" : "C:/Users/nekoy/OneDrive - DigiPen Institute of Technology/Documents/GitHub/Project-Eternum-Engine/Eternum Engine/third_party/googletest/googletest"
+				}
+			],
+			"language" : "CXX",
+			"languageStandard" : 
+			{
+				"backtraces" : 
+				[
+					2
+				],
+				"standard" : "17"
+			},
+			"precompileHeaders" : 
+			[
+				{
+					"backtrace" : 4,
+					"header" : "C:/Users/nekoy/OneDrive - DigiPen Institute of Technology/Documents/GitHub/Project-Eternum-Engine/Eternum Engine/src/Core/pch/pch.h"
+				}
+			],
+			"sourceIndexes" : 
+			[
+				0
+			]
+		},
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "-std=gnu++17 -fdiagnostics-color=always"
+				},
+				{
+					"fragment" : "-Winvalid-pch -include \"C:/Users/nekoy/OneDrive - DigiPen Institute of Technology/Documents/GitHub/Project-Eternum-Engine/CMakeFiles/eternum-tests.dir/cmake_pch.hxx\""
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 3,
+					"path" : "C:/Users/nekoy/OneDrive - DigiPen Institute of Technology/Documents/GitHub/Project-Eternum-Engine/Eternum Engine/src"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "C:/Users/nekoy/OneDrive - DigiPen Institute of Technology/Documents/GitHub/Project-Eternum-Engine/Eternum Engine/src/Core/pch"
+				},
+				{
+					"backtrace" : 2,
+					"isSystem" : true,
+					"path" : "C:/Users/nekoy/OneDrive - DigiPen Institute of Technology/Documents/GitHub/Project-Eternum-Engine/Eternum Engine/third_party/googletest/googletest/include"
+				},
+				{
+					"backtrace" : 2,
+					"isSystem" : true,
+					"path" : "C:/Users/nekoy/OneDrive - DigiPen Institute of Technology/Documents/GitHub/Project-Eternum-Engine/Eternum Engine/third_party/googletest/googletest"
+				}
+			],
+			"language" : "CXX",
+			"languageStandard" : 
+			{
+				"backtraces" : 
+				[
+					2
+				],
+				"standard" : "17"
+			},
+			"precompileHeaders" : 
+			[
+				{
+					"backtrace" : 4,
+					"header" : "C:/Users/nekoy/OneDrive - DigiPen Institute of Technology/Documents/GitHub/Project-Eternum-Engine/Eternum Engine/src/Core/pch/pch.h"
+				}
+			],
+			"sourceIndexes" : 
+			[
+				1,
+				2
+			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 2,
+			"id" : "eternum-engine-lib::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "gtest::@5bc8a02f1b46a3c456c3"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "gtest_main::@5bc8a02f1b46a3c456c3"
+		}
+	],
+	"id" : "eternum-tests::@6890427a1f51a3e7e1df",
+	"link" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "libeternum-engine-lib.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "lib\\libgtest.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "lib\\libgtest_main.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "lib\\libgtest.a",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32",
+				"role" : "libraries"
+			}
+		],
+		"language" : "CXX"
+	},
+	"name" : "eternum-tests",
+	"nameOnDisk" : "eternum-tests.exe",
+	"paths" : 
+	{
+		"build" : ".",
+		"source" : "."
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2
+			]
+		},
+		{
+			"name" : "Precompile Header File",
+			"sourceIndexes" : 
+			[
+				3
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 0,
+			"compileGroupIndex" : 0,
+			"path" : "CMakeFiles/eternum-tests.dir/cmake_pch.hxx.cxx",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 1,
+			"path" : "Unit Tests/SystemRegistryTests.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 1,
+			"path" : "Unit Tests/SystemTests.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 0,
+			"path" : "CMakeFiles/eternum-tests.dir/cmake_pch.hxx",
+			"sourceGroupIndex" : 1
+		}
+	],
+	"type" : "EXECUTABLE"
+}

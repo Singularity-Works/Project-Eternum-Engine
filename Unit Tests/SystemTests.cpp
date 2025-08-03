@@ -1,5 +1,5 @@
 ﻿#include <gtest/gtest.h>
-#include  <Systems/system.h>
+#include <Systems/system.h>
 
 class TestSystem : public System {
 public:

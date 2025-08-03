@@ -58,7 +58,15 @@ void Runtime::Stop() {
 // Initializes the runtime, setting up necessary systems and resources
 void Runtime::Init() {
     std::cout << "Initializing Runtime..." << std::endl;
-    // TODO : Initialize game systems, load resources, etc.
+
+   auto systems = Registry()->GetSystems();
+
+    for (auto& system : systems) {
+        if (system) {
+            system->Init();
+        }
+    }
+
 }
 
 // Shuts down the runtime, cleaning up resources and shutting down systems

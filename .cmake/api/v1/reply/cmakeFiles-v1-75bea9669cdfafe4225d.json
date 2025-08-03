@@ -1,0 +1,319 @@
+{
+	"globsDependent" : 
+	[
+		{
+			"expression" : "C:/Users/nekoy/OneDrive - DigiPen Institute of Technology/Documents/GitHub/Project-Eternum-Engine/Eternum Engine/src/*.cpp",
+			"paths" : 
+			[
+				"C:/Users/nekoy/OneDrive - DigiPen Institute of Technology/Documents/GitHub/Project-Eternum-Engine/Eternum Engine/src/Core/Runtime/Runtime.cpp",
+				"C:/Users/nekoy/OneDrive - DigiPen Institute of Technology/Documents/GitHub/Project-Eternum-Engine/Eternum Engine/src/Core/pch/pch.cpp",
+				"C:/Users/nekoy/OneDrive - DigiPen Institute of Technology/Documents/GitHub/Project-Eternum-Engine/Eternum Engine/src/Systems/Input/InputSystem.cpp",
+				"C:/Users/nekoy/OneDrive - DigiPen Institute of Technology/Documents/GitHub/Project-Eternum-Engine/Eternum Engine/src/main.cpp"
+			],
+			"recurse" : true
+		},
+		{
+			"expression" : "C:/Users/nekoy/OneDrive - DigiPen Institute of Technology/Documents/GitHub/Project-Eternum-Engine/Eternum Engine/src/*.h",
+			"paths" : 
+			[
+				"C:/Users/nekoy/OneDrive - DigiPen Institute of Technology/Documents/GitHub/Project-Eternum-Engine/Eternum Engine/src/Core/Runtime/Runtime.h",
+				"C:/Users/nekoy/OneDrive - DigiPen Institute of Technology/Documents/GitHub/Project-Eternum-Engine/Eternum Engine/src/Core/pch/pch.h",
+				"C:/Users/nekoy/OneDrive - DigiPen Institute of Technology/Documents/GitHub/Project-Eternum-Engine/Eternum Engine/src/Systems/AllSystems.h",
+				"C:/Users/nekoy/OneDrive - DigiPen Institute of Technology/Documents/GitHub/Project-Eternum-Engine/Eternum Engine/src/Systems/Input/InputSystem.h",
+				"C:/Users/nekoy/OneDrive - DigiPen Institute of Technology/Documents/GitHub/Project-Eternum-Engine/Eternum Engine/src/Systems/System Registry/SystemRegistry.h",
+				"C:/Users/nekoy/OneDrive - DigiPen Institute of Technology/Documents/GitHub/Project-Eternum-Engine/Eternum Engine/src/Systems/system.h"
+			],
+			"recurse" : true
+		},
+		{
+			"expression" : "C:/Users/nekoy/OneDrive - DigiPen Institute of Technology/Documents/GitHub/Project-Eternum-Engine/Unit Tests/*.cpp",
+			"paths" : 
+			[
+				"C:/Users/nekoy/OneDrive - DigiPen Institute of Technology/Documents/GitHub/Project-Eternum-Engine/Unit Tests/SystemRegistryTests.cpp",
+				"C:/Users/nekoy/OneDrive - DigiPen Institute of Technology/Documents/GitHub/Project-Eternum-Engine/Unit Tests/SystemTests.cpp"
+			],
+			"recurse" : true
+		}
+	],
+	"inputs" : 
+	[
+		{
+			"path" : "CMakeLists.txt"
+		},
+		{
+			"path" : "CMakeFiles/3.31.6/CMakeSystem.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "C:/Program Files/JetBrains/CLion 2025.1.4/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeSystemSpecificInitialize.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "C:/Program Files/JetBrains/CLion 2025.1.4/bin/cmake/win/x64/share/cmake-3.31/Modules/Platform/Windows-Initialize.cmake"
+		},
+		{
+			"path" : "CMakeFiles/3.31.6/CMakeCCompiler.cmake"
+		},
+		{
+			"path" : "CMakeFiles/3.31.6/CMakeCXXCompiler.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "C:/Program Files/JetBrains/CLion 2025.1.4/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeSystemSpecificInformation.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "C:/Program Files/JetBrains/CLion 2025.1.4/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeGenericSystem.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "C:/Program Files/JetBrains/CLion 2025.1.4/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeInitializeConfigs.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "C:/Program Files/JetBrains/CLion 2025.1.4/bin/cmake/win/x64/share/cmake-3.31/Modules/Platform/Windows.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "C:/Program Files/JetBrains/CLion 2025.1.4/bin/cmake/win/x64/share/cmake-3.31/Modules/Platform/WindowsPaths.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "C:/Program Files/JetBrains/CLion 2025.1.4/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeCInformation.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "C:/Program Files/JetBrains/CLion 2025.1.4/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeLanguageInformation.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "C:/Program Files/JetBrains/CLion 2025.1.4/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/GNU-C.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "C:/Program Files/JetBrains/CLion 2025.1.4/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/GNU.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "C:/Program Files/JetBrains/CLion 2025.1.4/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/CMakeCommonCompilerMacros.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "C:/Program Files/JetBrains/CLion 2025.1.4/bin/cmake/win/x64/share/cmake-3.31/Modules/Platform/Windows-GNU-C.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "C:/Program Files/JetBrains/CLion 2025.1.4/bin/cmake/win/x64/share/cmake-3.31/Modules/Platform/Windows-GNU.cmake"
+		},
+		{
+			"path" : "CMakeFiles/3.31.6/CMakeRCCompiler.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "C:/Program Files/JetBrains/CLion 2025.1.4/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeRCInformation.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "C:/Program Files/JetBrains/CLion 2025.1.4/bin/cmake/win/x64/share/cmake-3.31/Modules/Platform/Windows-windres.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "C:/Program Files/JetBrains/CLion 2025.1.4/bin/cmake/win/x64/share/cmake-3.31/Modules/Platform/Windows-GNU-C-ABI.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "C:/Program Files/JetBrains/CLion 2025.1.4/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeCommonLanguageInclude.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "C:/Program Files/JetBrains/CLion 2025.1.4/bin/cmake/win/x64/share/cmake-3.31/Modules/Internal/CMakeCLinkerInformation.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "C:/Program Files/JetBrains/CLion 2025.1.4/bin/cmake/win/x64/share/cmake-3.31/Modules/Internal/CMakeCommonLinkerInformation.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "C:/Program Files/JetBrains/CLion 2025.1.4/bin/cmake/win/x64/share/cmake-3.31/Modules/Linker/GNU-C.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "C:/Program Files/JetBrains/CLion 2025.1.4/bin/cmake/win/x64/share/cmake-3.31/Modules/Linker/GNU.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "C:/Program Files/JetBrains/CLion 2025.1.4/bin/cmake/win/x64/share/cmake-3.31/Modules/Platform/Linker/Windows-GNU-C.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "C:/Program Files/JetBrains/CLion 2025.1.4/bin/cmake/win/x64/share/cmake-3.31/Modules/Platform/Linker/Windows-GNU.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "C:/Program Files/JetBrains/CLion 2025.1.4/bin/cmake/win/x64/share/cmake-3.31/Modules/Platform/Linker/GNU.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "C:/Program Files/JetBrains/CLion 2025.1.4/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeCXXInformation.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "C:/Program Files/JetBrains/CLion 2025.1.4/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeLanguageInformation.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "C:/Program Files/JetBrains/CLion 2025.1.4/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/GNU-CXX.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "C:/Program Files/JetBrains/CLion 2025.1.4/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/GNU.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "C:/Program Files/JetBrains/CLion 2025.1.4/bin/cmake/win/x64/share/cmake-3.31/Modules/Platform/Windows-GNU-CXX.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "C:/Program Files/JetBrains/CLion 2025.1.4/bin/cmake/win/x64/share/cmake-3.31/Modules/Platform/Windows-GNU.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "C:/Program Files/JetBrains/CLion 2025.1.4/bin/cmake/win/x64/share/cmake-3.31/Modules/Platform/Windows-GNU-CXX-ABI.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "C:/Program Files/JetBrains/CLion 2025.1.4/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeCommonLanguageInclude.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "C:/Program Files/JetBrains/CLion 2025.1.4/bin/cmake/win/x64/share/cmake-3.31/Modules/Internal/CMakeCXXLinkerInformation.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "C:/Program Files/JetBrains/CLion 2025.1.4/bin/cmake/win/x64/share/cmake-3.31/Modules/Internal/CMakeCommonLinkerInformation.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "C:/Program Files/JetBrains/CLion 2025.1.4/bin/cmake/win/x64/share/cmake-3.31/Modules/Linker/GNU-CXX.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "C:/Program Files/JetBrains/CLion 2025.1.4/bin/cmake/win/x64/share/cmake-3.31/Modules/Linker/GNU.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "C:/Program Files/JetBrains/CLion 2025.1.4/bin/cmake/win/x64/share/cmake-3.31/Modules/Platform/Linker/Windows-GNU-CXX.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "C:/Program Files/JetBrains/CLion 2025.1.4/bin/cmake/win/x64/share/cmake-3.31/Modules/Platform/Linker/Windows-GNU.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "C:/Program Files/JetBrains/CLion 2025.1.4/bin/cmake/win/x64/share/cmake-3.31/Modules/GoogleTest.cmake"
+		},
+		{
+			"path" : "Eternum Engine/third_party/googletest/CMakeLists.txt"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "C:/Program Files/JetBrains/CLion 2025.1.4/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeDependentOption.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "C:/Program Files/JetBrains/CLion 2025.1.4/bin/cmake/win/x64/share/cmake-3.31/Modules/GNUInstallDirs.cmake"
+		},
+		{
+			"path" : "Eternum Engine/third_party/googletest/googlemock/CMakeLists.txt"
+		},
+		{
+			"path" : "Eternum Engine/third_party/googletest/googlemock/cmake/gmock.pc.in"
+		},
+		{
+			"path" : "Eternum Engine/third_party/googletest/googlemock/cmake/gmock_main.pc.in"
+		},
+		{
+			"path" : "Eternum Engine/third_party/googletest/googletest/CMakeLists.txt"
+		},
+		{
+			"path" : "Eternum Engine/third_party/googletest/googletest/cmake/internal_utils.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "C:/Program Files/JetBrains/CLion 2025.1.4/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakePackageConfigHelpers.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "C:/Program Files/JetBrains/CLion 2025.1.4/bin/cmake/win/x64/share/cmake-3.31/Modules/WriteBasicConfigVersionFile.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "C:/Program Files/JetBrains/CLion 2025.1.4/bin/cmake/win/x64/share/cmake-3.31/Modules/BasicConfigVersion-AnyNewerVersion.cmake.in"
+		},
+		{
+			"path" : "Eternum Engine/third_party/googletest/googletest/cmake/Config.cmake.in"
+		},
+		{
+			"path" : "Eternum Engine/third_party/googletest/googletest/cmake/gtest.pc.in"
+		},
+		{
+			"path" : "Eternum Engine/third_party/googletest/googletest/cmake/gtest_main.pc.in"
+		}
+	],
+	"kind" : "cmakeFiles",
+	"paths" : 
+	{
+		"build" : "C:/Users/nekoy/OneDrive - DigiPen Institute of Technology/Documents/GitHub/Project-Eternum-Engine",
+		"source" : "C:/Users/nekoy/OneDrive - DigiPen Institute of Technology/Documents/GitHub/Project-Eternum-Engine"
+	},
+	"version" : 
+	{
+		"major" : 1,
+		"minor" : 1
+	}
+}
