@@ -38,3 +38,4 @@ Concept.docx
 build/
 cmake-build-debug/
 
+/.vs
