@@ -4,6 +4,11 @@
 int main()
 {
 
-    Runtime::GetInstance()->Run();
+    RuntimeSystem()->Run();
+
+
+    // Leave the console open until the user presses a key
+    std::cout << "Press any key to exit..." << std::endl;
+    std::cin.get();
     return 0;
 }

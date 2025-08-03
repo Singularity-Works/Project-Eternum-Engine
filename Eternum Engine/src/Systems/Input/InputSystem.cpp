@@ -13,118 +13,86 @@
 #include "InputSystem.h"
 #include <Core/Runtime/Runtime.h>
 
-// Register the InputSystem with the SystemRegistry
-AUTO_REGISTER_SYSTEM(InputSystem)
+InputSystem::InputSystem()
+  : System("Input System")
+{}
 
-void InputSystem::Init()
+void InputSystem::Init()    { System::Init(); }
+void InputSystem::FixedUpdate() {}
+void InputSystem::Render()  {}
+void InputSystem::Shutdown(){ System::Shutdown(); }
+
+void InputSystem::Update(double dt)
 {
-    System::Init();
-}
-
-void InputSystem::Update(double deltaTime)
-{
-    System::Update(deltaTime);
-
-    if (IsKeyPressed())
-    {
-        std::cout << "Key pressed!" << std::endl;
-    }
-
-     if (IsKeyPressed(Key::ESC))
+    if (IsKeyPressed(Key::ESC))
     {
         std::cout << "Exiting..." << std::endl;
-         RuntimeSystem()->Stop();
+        RuntimeSystem()->Stop();
     }
 }
 
-void InputSystem::FixedUpdate()
-{
-    System::FixedUpdate();
-}
-
-void InputSystem::Render()
-{
-    System::Render();
-}
-
-void InputSystem::Shutdown()
-{
-    System::Shutdown();
-}
-
+//— read, normalize, log, return
 Key InputSystem::KeyPressed()
 {
+    int raw = -1;
+
 #ifdef _WIN32
-    if (_kbhit())
-    {
-        int ch = _getch(); // Read key
-        return MapKey(ch);
-    }
-    return Key::UNKNOWN;
+    if (!_kbhit()) return Key::INVALID;
+    raw = _getch();
 #else
-    termios originalTermSettings;
-    termios modifiedTermSettings;
-    int pressedKey;
-    int originalFileFlags;
+    termios orig, mod;
+    int flags;
 
-    // Save current terminal settings
-    tcgetattr(STDIN_FILENO, &originalTermSettings);
-    modifiedTermSettings = originalTermSettings;
+    // save & set noncanonical, no-echo
+    tcgetattr(STDIN_FILENO, &orig);
+    mod = orig;
+    mod.c_lflag &= ~(ICANON|ECHO);
+    tcsetattr(STDIN_FILENO, TCSANOW, &mod);
 
-    // Non-canonical, no echo
-    modifiedTermSettings.c_lflag &= ~(ICANON | ECHO);
-    tcsetattr(STDIN_FILENO, TCSANOW, &modifiedTermSettings);
+    // nonblocking
+    flags = fcntl(STDIN_FILENO, F_GETFL, 0);
+    fcntl(STDIN_FILENO, F_SETFL, flags | O_NONBLOCK);
 
-    // Non-blocking stdin
-    originalFileFlags = fcntl(STDIN_FILENO, F_GETFL, 0);
-    fcntl(STDIN_FILENO, F_SETFL, originalFileFlags | O_NONBLOCK);
+    raw = getchar();
 
-    // Try read
-    pressedKey = getchar();
+    // restore
+    tcsetattr(STDIN_FILENO, TCSANOW, &orig);
+    fcntl(STDIN_FILENO, F_SETFL, flags);
 
-    // Restore settings
-    tcsetattr(STDIN_FILENO, TCSANOW, &originalTermSettings);
-    fcntl(STDIN_FILENO, F_SETFL, originalFileFlags);
-
-    if (pressedKey != EOF)
-        return MapKey(pressedKey);
-
-    return Key::UNKNOWN;
-
+    if (raw == EOF) return Key::UNKNOWN;
 #endif
+    Key k = NormalizeKey(raw);
+    MapKey(k);
+    return k;
+}
+
+Key InputSystem::NormalizeKey(int raw)
+{
+    // turn a–z into A–Z
+    if (raw >= 'a' && raw <= 'z')
+        raw -= ('a' - 'A');
+    return static_cast<Key>(raw);
+}
+
+char InputSystem::MapKey(Key k)
+{
+    char c = static_cast<char>(static_cast<int>(k));
+    return c;
 }
 
 bool InputSystem::IsKeyPressed(Key key)
 {
+    const Key cur = KeyPressed();
+    const bool hit = (key == Key::ANY)
+               ? (cur != Key::INVALID && cur != Key::UNKNOWN)
+               : (cur == key);
 
-    if (key == Key::UNKNOWN)
-    {
-        // If no specific key is requested, check if any key is pressed
-        return KeyPressed() != Key::UNKNOWN;
-    }
-
-    Key currentKey = KeyPressed();
-    bool pressed = (currentKey == key);
-    bool result = pressed && !m_lastKeyPressed;
-    m_lastKeyPressed = pressed;
-    return result;
+    const bool justDown = hit && !m_lastDown;
+    m_lastDown = hit;
+    return justDown;
 }
 
-Key InputSystem::MapKey(int rawCode)
+bool InputSystem::IsKeyDown(const Key key)
 {
-    switch (rawCode)
-    {
-    case 27:  return Key::ESC;
-    case 32:  return Key::SPACE;
-    case 13:  return Key::ENTER;
-    case 8:   return Key::BACKSPACE;
-
-    case 'A': case 'B': case 'C': case 'D': case 'E':
-    case 'F': case 'G': case 'H': case 'I': case 'J':
-    case 'K': case 'L': case 'M': case 'N': case 'O':
-    case 'P': case 'Q': case 'R': case 'S': case 'T':
-    case 'U': case 'V': case 'W': case 'X': case 'Y': case 'Z':
-        return static_cast<Key>(rawCode);
-    }
-    return Key::UNKNOWN;
+    return (KeyPressed() == key);
 }

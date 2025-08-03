@@ -34,7 +34,7 @@ public:
 };
 
 // Macro to register system at static init time
-AUTO_REGISTER_SYSTEM(TestAutoSystem)
+REGISTER_SYSTEM(TestAutoSystem)
 
 TEST(SystemRegistryTests, AutoRegisterRunsBeforeMain)
 {

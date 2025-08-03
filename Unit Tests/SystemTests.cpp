@@ -1,11 +1,14 @@
 ﻿#include <gtest/gtest.h>
 #include <Systems/system.h>
 
-class TestSystem : public System {
+class TestSystem final : public System {
 public:
     TestSystem() : System("TestSystem") {}
     bool initCalled = false;
     void Init() override { initCalled = true; }
+    void Update(double deltaTime) override;
+    void FixedUpdate() override;
+    void Render() override;
 };
 
 TEST(SystemTests, NameIsSetCorrectly) {

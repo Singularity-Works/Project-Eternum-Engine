@@ -9,9 +9,9 @@
 * Created:    8/2/2025
 * License:    MIT License (see LICENSE file in project root)
 *******************************************************************************************/
+
 #ifndef SYSTEMREGISTRY_H
 #define SYSTEMREGISTRY_H
-#include <pch.h>
 
 class SystemRegistry
 {
@@ -24,6 +24,12 @@ class SystemRegistry
 
         void Register(System* sys)
         {
+            for (const auto& existingSys : systems) {
+                if (existingSys->GetName() == sys->GetName()) {
+                    return; // System already registered
+                }
+            }
+
             std::cout << "Registering system: " << sys->GetName() << std::endl;
             systems.push_back(sys);
         }
@@ -47,7 +53,7 @@ static SystemRegistry* Registry()
 /// This macro should be used in the system's implementation file to ensure that the system
 // AutoRegisterSystem.h
 
-#define AUTO_REGISTER_SYSTEM(SystemType)                      \
+#define REGISTER_SYSTEM(SystemType)                      \
 namespace {                                                \
 struct SystemType##AutoRegister {                      \
 SystemType##AutoRegister() {                       \

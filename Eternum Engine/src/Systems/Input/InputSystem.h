@@ -14,67 +14,42 @@
 
 #pragma once
 #include <Systems/system.h>
-
-
-enum class Key
-{
-    UNKNOWN = 0,
-    ESC = 27, // ASCII escape
-    SPACE = 32,
-
-    // ASCII uppercase letters
-    A = 'A', B, C, D, E, F, G,
-    H, I, J, K, L, M, N,
-    O, P, Q, R, S, T, U,
-    V, W, X, Y, Z,
-
-    ENTER = 13,
-    BACKSPACE = 8
-};
-
+#include <Systems/Grid System/Key/Key.h>
 
 class InputSystem final : public System
 {
 public:
-
-
-    /// @brief Initializes the Input System.
-    void Init() override;
-
-    void Update(double deltaTime) override;
-
-    void FixedUpdate() override;
-
-    void Render() override;
-
-    void Shutdown() override;
-
-    /// @brief Checks if a key has been pressed without blocking.
-    /// @return true if a key was pressed, false otherwise.
-    static Key KeyPressed();
-
-    bool IsKeyPressed(Key key = Key::UNKNOWN);
-
-    // ----------------------------------------------------------------
-    // Singleton pattern to ensure only one instance of InputSystem exists
-    // ----------------------------------------------------------------
     static std::shared_ptr<InputSystem> GetInstance()
     {
         static std::shared_ptr<InputSystem> instance(new InputSystem());
         return instance;
-    }
+    };
+
+    void Init() override;
+    void Update(double dt) override;
+    void FixedUpdate() override;
+    void Render() override;
+    void Shutdown() override;
+
+    /// @return last key read, or INVALID/UNKNOWN if none
+    static Key KeyPressed();
+
+    /// @return true on the frame the key first goes down
+    bool    IsKeyPressed(Key key = Key::UNKNOWN);
+
+    /// @return true as long as the key stays down
+    static bool IsKeyDown(Key key = Key::UNKNOWN);
 
 private:
+    explicit InputSystem();
 
-    // Private constructor to enforce singleton pattern
-    // This ensures that InputSystem can only be created through GetInstance()
-    explicit InputSystem() : System("Input System") {}
+    /// map raw int → uppercase Key
+    static Key  NormalizeKey(int raw);
 
-    /// @brief Maps an integer key code to a Key enum.
-    static Key MapKey(int rawCode);
+    /// log it and return the char
+    static char MapKey(Key k);
 
-    bool m_lastKeyPressed = false; // Track the last key pressed state
-
+    bool m_lastDown = false;
 };
 
 static InputSystem* Input()
@@ -82,6 +57,7 @@ static InputSystem* Input()
     return InputSystem::GetInstance().get();
 }
 
-
+// Register the InputSystem with the SystemRegistry
+REGISTER_SYSTEM(InputSystem)
 
 #endif //INPUTSYSTEM_H

@@ -14,6 +14,6 @@
 #define ALLSYSTEMS_H
 
 #include <Systems/Input/InputSystem.h>
-
+#include <Systems/Grid System/GridSystem.h>
 
 #endif //ALLSYSTEMS_H

@@ -40,13 +40,13 @@ public:
     }
 
     // Called every frame before fixed updates
-    virtual void Update(double deltaTime) {}
+    virtual void Update(double deltaTime) = 0;
 
     // Called on fixed intervals (e.g., physics updates)
-    virtual void FixedUpdate() {}
+    virtual void FixedUpdate() = 0;
 
     // Called every frame after update for rendering
-    virtual void Render() {}
+    virtual void Render() = 0;
 
     // Called when the system is shutting down
     virtual void Shutdown()
