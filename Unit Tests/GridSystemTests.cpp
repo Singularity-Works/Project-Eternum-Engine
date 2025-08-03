@@ -1,5 +1,6 @@
 ﻿#include <gtest/gtest.h>
 #include <Systems/System Registry/SystemRegistry.h>
+#include <Systems/Grid System/GridSystem.h>
 #include <Systems/system.h>
 
 // Fixture to reset the GridSystem between tests
