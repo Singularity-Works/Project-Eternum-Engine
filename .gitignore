@@ -46,3 +46,25 @@ CMakeCache.txt
 *.cmake
 /CMakeFiles
 /CMakeFiles
+.cmake/api/v1/query/cache-v2
+.cmake/api/v1/query/cmakeFiles-v1
+.cmake/api/v1/query/codemodel-v2
+.cmake/api/v1/query/toolchains-v1
+.cmake/api/v1/reply/directory-.-d0094a50bb2071803777.json
+.cmake/api/v1/reply/directory-Eternum Engine.third_party.googletest-6ef5b7f1ca243bf135ba.json
+.cmake/api/v1/reply/directory-Eternum Engine.third_party.googletest.googlemock-37056e31fb302ca0192d.json
+.cmake/api/v1/reply/directory-Eternum Engine.third_party.googletest.googletest-957619299375984ebbc1.json
+.cmake/api/v1/reply/toolchains-v1-6f9ba45d19bf64c79d28.json
+CMakeFiles/3.31.6/CMakeCCompiler.cmake
+CMakeFiles/3.31.6/CMakeCXXCompiler.cmake
+CMakeFiles/3.31.6/CMakeDetermineCompilerABI_C.bin
+CMakeFiles/3.31.6/CMakeRCCompiler.cmake
+CMakeFiles/3.31.6/CMakeSystem.cmake
+CMakeFiles/3.31.6/CompilerIdC/CMakeCCompilerId.c
+CMakeFiles/3.31.6/CompilerIdCXX/CMakeCXXCompilerId.cpp
+CMakeFiles/clion-environment.txt
+CMakeFiles/CMakeConfigureLog.yaml
+Testing/Temporary/LastTest.log
+/CMakeFiles/3.31.6
+/CMakeFiles
+/Testing
