@@ -1,5 +1,0 @@
-if(EXISTS "C:/Users/nekoy/OneDrive - DigiPen Institute of Technology/Documents/GitHub/Project-Eternum-Engine/eternum-tests[1]_tests.cmake")
-  include("C:/Users/nekoy/OneDrive - DigiPen Institute of Technology/Documents/GitHub/Project-Eternum-Engine/eternum-tests[1]_tests.cmake")
-else()
-  add_test(eternum-tests_NOT_BUILT eternum-tests_NOT_BUILT)
-endif()

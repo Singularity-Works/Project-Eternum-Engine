@@ -43,13 +43,16 @@ public:
     virtual void Update(double deltaTime) {}
 
     // Called on fixed intervals (e.g., physics updates)
-    virtual void FixedUpdate(double fixedDeltaTime) {}
+    virtual void FixedUpdate() {}
 
     // Called every frame after update for rendering
     virtual void Render() {}
 
     // Called when the system is shutting down
-    virtual void Shutdown() {}
+    virtual void Shutdown()
+    {
+        std::cout << "Shutdown system: " << m_Name << std::endl;
+    }
 
     // Returns the name of the system for identification
     const std::string& GetName() const { return m_Name; }

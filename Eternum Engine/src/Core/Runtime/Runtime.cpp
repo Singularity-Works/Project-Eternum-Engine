@@ -35,7 +35,6 @@ void Runtime::Run() {
 
         m_Accumulator += deltaTime;
 
-        ProcessInput();
         Update(deltaTime);
 
         while (m_Accumulator >= deltaTime)
@@ -59,6 +58,13 @@ void Runtime::Stop() {
 void Runtime::Init() {
     std::cout << "Initializing Runtime..." << std::endl;
 
+    // Print the user's system name windows or linux
+#ifdef _WIN32
+    std::cout << "Running on Windows" << std::endl;
+#else
+    std::cout << "Running on Linux" << std::endl;
+#endif
+
    auto systems = Registry()->GetSystems();
 
     for (auto& system : systems) {
@@ -72,24 +78,47 @@ void Runtime::Init() {
 // Shuts down the runtime, cleaning up resources and shutting down systems
 void Runtime::Shutdown() {
     std::cout << "Shutting down..." << std::endl;
-    // TODO : Clean up game systems, release resources, etc.
-}
 
-// Processes input events, handling user interactions and system events
-void Runtime::ProcessInput() {
-    // TODO: Handle input events
+    auto systems = Registry()->GetSystems();
+
+    for (auto& system : systems) {
+        if (system) {
+            system->Shutdown();
+        }
+    }
 }
 
 // Updates the game state, applying logic and changes based on the elapsed time
 void Runtime::Update(double deltaTime) {
-    // TODO: Update game state based on deltaTime
+
+    // Update all systems with the elapsed time
+    auto systems = Registry()->GetSystems();
+    for (auto& system : systems) {
+        if (system) {
+            system->Update(deltaTime);
+        }
+    }
+
 }
 
 void Runtime::FixedUpdate() {
-    // TODO: Perform fixed updates, such as physics calculations
+
+    auto systems = Registry()->GetSystems();
+
+    for (auto& system : systems) {
+        if (system) {
+            system->FixedUpdate();
+        }
+    }
 }
 
 // Renders the current frame, drawing the game state to the screen
 void Runtime::Render() {
-    // TODO: Render the current game state to the screen
+    auto systems = Registry()->GetSystems();
+
+    for (auto& system : systems) {
+        if (system) {
+            system->Render();
+        }
+    }
 }

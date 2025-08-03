@@ -15,6 +15,24 @@
 #pragma once
 #include <Systems/system.h>
 
+
+enum class Key
+{
+    UNKNOWN = 0,
+    ESC = 27, // ASCII escape
+    SPACE = 32,
+
+    // ASCII uppercase letters
+    A = 'A', B, C, D, E, F, G,
+    H, I, J, K, L, M, N,
+    O, P, Q, R, S, T, U,
+    V, W, X, Y, Z,
+
+    ENTER = 13,
+    BACKSPACE = 8
+};
+
+
 class InputSystem final : public System
 {
 public:
@@ -25,7 +43,7 @@ public:
 
     void Update(double deltaTime) override;
 
-    void FixedUpdate(double fixedDeltaTime) override;
+    void FixedUpdate() override;
 
     void Render() override;
 
@@ -33,7 +51,9 @@ public:
 
     /// @brief Checks if a key has been pressed without blocking.
     /// @return true if a key was pressed, false otherwise.
-    static bool KeyPressed();
+    static Key KeyPressed();
+
+    bool IsKeyPressed(Key key = Key::UNKNOWN);
 
     // ----------------------------------------------------------------
     // Singleton pattern to ensure only one instance of InputSystem exists
@@ -49,6 +69,11 @@ private:
     // Private constructor to enforce singleton pattern
     // This ensures that InputSystem can only be created through GetInstance()
     explicit InputSystem() : System("Input System") {}
+
+    /// @brief Maps an integer key code to a Key enum.
+    static Key MapKey(int rawCode);
+
+    bool m_lastKeyPressed = false; // Track the last key pressed state
 
 };
 

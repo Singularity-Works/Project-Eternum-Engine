@@ -52,10 +52,17 @@ private:
     void Shutdown();
 
     // Core loop stages
-    void ProcessInput();
     void Update(double deltaTime);
     void FixedUpdate();
     void Render();
+
+    double GetDeltaTime() const {
+        return m_LastTime;
+    }
+
+    double GetFixedDeltaTime() const {
+        return m_FixedDeltaTime;
+    }
 
     // ----------------------------------------------------------------
     // Delete copy/move semantics for singleton safety
@@ -80,9 +87,9 @@ private:
 
 
 // Static Runtime instance call
-inline std::shared_ptr<Runtime> System()
+inline Runtime* RuntimeSystem()
 {
-    return Runtime::GetInstance();
+    return Runtime::GetInstance().get();
 }
 
 #endif //RUNTIME_H

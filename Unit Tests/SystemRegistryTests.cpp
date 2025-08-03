@@ -21,7 +21,7 @@ public:
 
     void Init() override {}
     void Update(double) override {}
-    void FixedUpdate(double) override {}
+    void FixedUpdate() override {}
     void Render() override {}
     void Shutdown() override {}
 

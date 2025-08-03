@@ -11,6 +11,7 @@
 *******************************************************************************************/
 #include <pch.h>
 #include "InputSystem.h"
+#include <Core/Runtime/Runtime.h>
 
 // Register the InputSystem with the SystemRegistry
 AUTO_REGISTER_SYSTEM(InputSystem)
@@ -23,11 +24,22 @@ void InputSystem::Init()
 void InputSystem::Update(double deltaTime)
 {
     System::Update(deltaTime);
+
+    if (IsKeyPressed())
+    {
+        std::cout << "Key pressed!" << std::endl;
+    }
+
+     if (IsKeyPressed(Key::ESC))
+    {
+        std::cout << "Exiting..." << std::endl;
+         RuntimeSystem()->Stop();
+    }
 }
 
-void InputSystem::FixedUpdate(double fixedDeltaTime)
+void InputSystem::FixedUpdate()
 {
-    System::FixedUpdate(fixedDeltaTime);
+    System::FixedUpdate();
 }
 
 void InputSystem::Render()
@@ -40,46 +52,79 @@ void InputSystem::Shutdown()
     System::Shutdown();
 }
 
-bool InputSystem::KeyPressed()
+Key InputSystem::KeyPressed()
 {
-
 #ifdef _WIN32
-    return _kbhit() != 0; // _kbhit() returns a non-zero value if a key has been pressed
+    if (_kbhit())
+    {
+        int ch = _getch(); // Read key
+        return MapKey(ch);
+    }
+    return Key::UNKNOWN;
 #else
-    termios originalTermSettings;  // Stores original terminal attributes so we can restore them later
-    termios modifiedTermSettings;  // Stores modified terminal attributes for non-blocking input
-    int pressedKey;                 // Holds the read character (if any)
-    int originalFileFlags;          // Stores original file descriptor flags
+    termios originalTermSettings;
+    termios modifiedTermSettings;
+    int pressedKey;
+    int originalFileFlags;
 
-    // Get current terminal settings
+    // Save current terminal settings
     tcgetattr(STDIN_FILENO, &originalTermSettings);
     modifiedTermSettings = originalTermSettings;
 
-    // Turn off canonical mode (ICANON) and echo (ECHO) so input is available immediately
+    // Non-canonical, no echo
     modifiedTermSettings.c_lflag &= ~(ICANON | ECHO);
     tcsetattr(STDIN_FILENO, TCSANOW, &modifiedTermSettings);
 
-    // Get current file descriptor flags for stdin
+    // Non-blocking stdin
     originalFileFlags = fcntl(STDIN_FILENO, F_GETFL, 0);
-
-    // Set stdin to non-blocking mode
     fcntl(STDIN_FILENO, F_SETFL, originalFileFlags | O_NONBLOCK);
 
-    // Try to read a single character
+    // Try read
     pressedKey = getchar();
 
-    // Restore terminal settings and file descriptor flags
+    // Restore settings
     tcsetattr(STDIN_FILENO, TCSANOW, &originalTermSettings);
     fcntl(STDIN_FILENO, F_SETFL, originalFileFlags);
 
-    // If a key was pressed, put it back into stdin buffer and return true
-    if (pressedKey != EOF) {
-        ungetc(pressedKey, stdin);
-        return true;
-    }
+    if (pressedKey != EOF)
+        return MapKey(pressedKey);
 
-    return false;
+    return Key::UNKNOWN;
 
 #endif
+}
 
+bool InputSystem::IsKeyPressed(Key key)
+{
+
+    if (key == Key::UNKNOWN)
+    {
+        // If no specific key is requested, check if any key is pressed
+        return KeyPressed() != Key::UNKNOWN;
+    }
+
+    Key currentKey = KeyPressed();
+    bool pressed = (currentKey == key);
+    bool result = pressed && !m_lastKeyPressed;
+    m_lastKeyPressed = pressed;
+    return result;
+}
+
+Key InputSystem::MapKey(int rawCode)
+{
+    switch (rawCode)
+    {
+    case 27:  return Key::ESC;
+    case 32:  return Key::SPACE;
+    case 13:  return Key::ENTER;
+    case 8:   return Key::BACKSPACE;
+
+    case 'A': case 'B': case 'C': case 'D': case 'E':
+    case 'F': case 'G': case 'H': case 'I': case 'J':
+    case 'K': case 'L': case 'M': case 'N': case 'O':
+    case 'P': case 'Q': case 'R': case 'S': case 'T':
+    case 'U': case 'V': case 'W': case 'X': case 'Y': case 'Z':
+        return static_cast<Key>(rawCode);
+    }
+    return Key::UNKNOWN;
 }
