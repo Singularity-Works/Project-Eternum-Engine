@@ -1,0 +1,4 @@
+Cannot generate into C:\Users\nekoy\OneDrive - DigiPen Institute of Technology\Documents\GitHub\Project-Eternum-Engine
+It is already used for project \cygdrive\c\Users\nekoy\OneDrive - DigiPen Institute of Technology\Documents\GitHub\Project-Eternum-Engine
+
+Please either delete it manually or select another generation directory
