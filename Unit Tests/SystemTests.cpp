@@ -5,7 +5,7 @@
 class TestSystem final : public System {
 public:
     TestSystem() : System("TestSystem") {}
-    ~TestSystem() override = default; 
+    ~TestSystem() override = default;
 
     bool initCalled = false;
     void Init() override { initCalled = true; }
