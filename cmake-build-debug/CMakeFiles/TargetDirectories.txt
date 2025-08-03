@@ -1,5 +1,0 @@
-C:/Users/nekoy/Desktop/Project-Eternum-Engine/cmake-build-debug/CMakeFiles/eternum-engine.dir
-C:/Users/nekoy/Desktop/Project-Eternum-Engine/cmake-build-debug/CMakeFiles/eternum-tests.dir
-C:/Users/nekoy/Desktop/Project-Eternum-Engine/cmake-build-debug/CMakeFiles/test.dir
-C:/Users/nekoy/Desktop/Project-Eternum-Engine/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/nekoy/Desktop/Project-Eternum-Engine/cmake-build-debug/CMakeFiles/rebuild_cache.dir
