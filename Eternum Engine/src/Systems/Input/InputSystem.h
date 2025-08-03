@@ -3,7 +3,7 @@
 * -----------------------------------------------------------------------------------------
 * File: InputSystem
 * Description:
-*     TODO: Describe the purpose of this file.
+*       Handles
 *
 * Author:     Jax Clayton
 * Created:    8/2/2025
@@ -12,9 +12,23 @@
 #ifndef INPUTSYSTEM_H
 #define INPUTSYSTEM_H
 
+#include "Systems/system.h"
 
-class InputSystem {
+class InputSystem final : public System
+{
+public:
 
+    explicit InputSystem() : System("Input System") {}
+
+    void Init() override;
+
+    void Update(double deltaTime) override;
+
+    void FixedUpdate(double fixedDeltaTime) override;
+
+    void Render() override;
+
+    void Shutdown() override;
 };
 
 

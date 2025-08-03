@@ -19,6 +19,10 @@
 
 class Runtime
 {
+
+    // ----------------------------------------------------------------
+    // Singleton pattern to ensure only one instance of Runtime exists
+    // ----------------------------------------------------------------
 public:
 
     ~Runtime();
@@ -36,15 +40,11 @@ public:
     // Stops the game loop
     void Stop();
 
+    // ------------------------------------------------------------------
+    // === Private methods for the Runtime class ===
+    // --------------------------------------------------------------------
 private:
     Runtime(); // Private constructor
-
-    bool m_Running = false;
-
-    // Timing
-    double m_LastTime = 0.0;
-    double m_Accumulator = 0.0;
-    const double m_FixedDeltaTime = 0.016;
 
     // Initialization helpers
     void Init();
@@ -64,6 +64,17 @@ public:
     Runtime& operator=(const Runtime&) = delete;
     Runtime(Runtime&&) = delete;
     Runtime& operator=(Runtime&&) = delete;
+
+    // ------------------------------------------------------------------
+    // === Private Variables for the Runtime class ===
+    // --------------------------------------------------------------------
+private:
+    bool m_Running = false;
+
+    // Timing
+    double m_LastTime = 0.0;
+    double m_Accumulator = 0.0;
+    const double m_FixedDeltaTime = 0.016;
 };
 
 
