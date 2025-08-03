@@ -67,22 +67,22 @@ This project is licensed under the [MIT License](LICENSE).
 ---
 
 ## Roadmap
-
 ### Current Goals
 
-* Core architecture + ECS
-* World generation algorithms (BSP, cellular automata, corridor graphs)
-* Serialization/deserialization (JSON + binary)
-* AI pathfinding (BFS, A\*, Dijkstra)
-* Combat system with basic effects
-* Event system for traps, loot, and environmental changes
-* Unit test suite with >80% coverage
-* CI/CD setup with GitHub Actions
+- [ ] Core architecture + ECS
+- [ ] World generation algorithms (BSP, cellular automata, corridor graphs)
+- [ ] Serialization/deserialization (JSON + binary)
+- [ ] AI pathfinding (BFS, A*, Dijkstra)
+- [ ] Combat system with basic effects
+- [ ] Event system for traps, loot, and environmental changes
+- [ ] Unit test suite with >80% coverage
+- [ ] CI/CD setup with GitHub Actions
 
 ### Stretch / Future Plans
 
-* Visual debug renderer (SDL2/ImGui)
-* Advanced AI (behavior trees)
-* Multiplayer simulation mode
-* Lua scripting for custom behaviors
-* Procedural item generation
+- [ ] Visual debug renderer (SDL2/ImGui)
+- [ ] Advanced AI (behavior trees)
+- [ ] Multiplayer simulation mode
+- [ ] Procedural item generation
+- [ ] Lua scripting for custom behaviors
+
