@@ -1,4 +1,4 @@
-﻿name: CMake Build
+﻿name: Windows CMake Build
 
 on:
   push:
