@@ -1,0 +1,76 @@
+﻿/*******************************************************************************************
+* Project Eternum Engine
+* -----------------------------------------------------------------------------------------
+* File: Runtime.cpp
+* Description:
+*     Implements the core runtime loop, handling initialization, the main update/render
+*     cycle, and shutdown of all game systems.
+*
+*     This is the central entry point for executing the engine’s systems and managing the
+*     flow of control between game states.
+*
+* Author:     Jax Clayton
+* Created:    2025-08-02
+* License:    MIT License (see LICENSE file in project root)
+*******************************************************************************************/
+
+#ifndef RUNTIME_H
+#define RUNTIME_H
+
+class Runtime
+{
+public:
+
+    ~Runtime();
+
+    // Singleton access
+    static std::shared_ptr<Runtime> GetInstance()
+    {
+        static std::shared_ptr<Runtime> instance(new Runtime());
+        return instance;
+    }
+
+    // Starts the game loop
+    void Run();
+
+    // Stops the game loop
+    void Stop();
+
+private:
+    Runtime(); // Private constructor
+
+    bool m_Running = false;
+
+    // Timing
+    double m_LastTime = 0.0;
+    double m_Accumulator = 0.0;
+    const double m_FixedDeltaTime = 0.016;
+
+    // Initialization helpers
+    void Init();
+    void Shutdown();
+
+    // Core loop stages
+    void ProcessInput();
+    void Update(double deltaTime);
+    void FixedUpdate();
+    void Render();
+
+    // ----------------------------------------------------------------
+    // Delete copy/move semantics for singleton safety
+    // ---------------------------------------------------------------
+public:
+    Runtime(const Runtime&) = delete;
+    Runtime& operator=(const Runtime&) = delete;
+    Runtime(Runtime&&) = delete;
+    Runtime& operator=(Runtime&&) = delete;
+};
+
+
+// Static Runtime instance call
+inline std::shared_ptr<Runtime> System()
+{
+    return Runtime::GetInstance();
+}
+
+#endif //RUNTIME_H

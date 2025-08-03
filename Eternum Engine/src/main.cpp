@@ -1,7 +1,9 @@
-#include <iostream>
+#include <pch.h>
+#include "Core/Runtime/Runtime.h"
 
 int main()
 {
-    std::cout << "Hello World" << std::endl;
+
+    Runtime::GetInstance()->Run();
     return 0;
 }
