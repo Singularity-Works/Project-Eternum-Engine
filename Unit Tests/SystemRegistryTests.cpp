@@ -33,6 +33,7 @@ public:
     }
 };
 
+
 // Macro to register system at static init time
 REGISTER_SYSTEM(TestAutoSystem)
 
