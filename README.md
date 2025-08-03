@@ -3,6 +3,9 @@
 **Eternum Engine** is a C++ simulation framework for procedurally generated, game‑adjacent environments.
 It focuses on **data structures, algorithms, and modular systems** inspired by game development, making it both a learning tool and a portfolio showcase.
 
+[![Linux CMake Build](https://github.com/Singularity-Works/Project-Eternum-Engine/actions/workflows/ci-Linux.yml/badge.svg)](https://github.com/Singularity-Works/Project-Eternum-Engine/actions/workflows/ci-Linux.yml)
+
+[![Windows CMake Build](https://github.com/Singularity-Works/Project-Eternum-Engine/actions/workflows/ci-windows.yml/badge.svg)](https://github.com/Singularity-Works/Project-Eternum-Engine/actions/workflows/ci-windows.yml)
 ---
 
 ## Features
