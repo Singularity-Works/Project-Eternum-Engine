@@ -16,6 +16,7 @@ endif()
 include_directories(
         "Eternum Engine/src"
         "Eternum Engine/src/Core/pch"
+        "Eternum Engine/third_party/googletest/googletest/include"
 )
 
 # --------------------------------------------------------

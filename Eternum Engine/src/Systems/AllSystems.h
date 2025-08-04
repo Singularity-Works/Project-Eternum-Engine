@@ -15,5 +15,6 @@
 
 #include <Systems/Input/InputSystem.h>
 #include <Systems/Grid System/GridSystem.h>
+#include <Systems/Dungeon System/DungeonSystem.h>
 
 #endif //ALLSYSTEMS_H

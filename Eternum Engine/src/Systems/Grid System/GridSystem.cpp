@@ -12,7 +12,7 @@
 
 #include <pch.h>
 #include "GridSystem.h"
-
+#include <gtest/internal/gtest-internal.h>
 #include "Systems/Input/InputSystem.h"
 
 
@@ -47,6 +47,18 @@ void GridSystem::Update(double deltaTime)
         CreateMap("NewMap", dim, '.');
         LoadMap("NewMap");
         std::cout << "Created and loaded new map: NewMap" << std::endl;
+    }
+
+    // H to Generate a random map
+    if (Input()->IsKeyPressed(Key::H))
+    {
+        const auto width = 20 + rand() % 80; // Random width between 20 and 100
+        const auto height = 5 + rand() % 20; // Random height between 5 and 25
+
+        const Dimension dim(width, height); // Example dimensions
+        CreateMap("RandomMap", dim, '.');
+        LoadMap("RandomMap");
+        std::cout << "Created and loaded random map: RandomMap" << std::endl;
     }
 
 }
@@ -89,6 +101,11 @@ void GridSystem::CreateMap(const std::string& name, const Dimension& dimensions,
 {
     m_maps[name] = Grid(dimensions.m_Width, dimensions.m_Height, fill);
     MarkDirty();
+}
+
+void GridSystem::AddMap(const std::string& name, const Grid& map)
+{
+    m_maps[name] = map;
 }
 
 bool GridSystem::LoadMap(const std::string& name)

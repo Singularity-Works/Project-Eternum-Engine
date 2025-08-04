@@ -3,7 +3,7 @@
 * -----------------------------------------------------------------------------------------
 * File: GridSystemTests
 * Description:
-*     TODO: Describe the purpose of this file.
+*      Tests the GridSystem functionality, including grid creation, cell management,
 *
 * Author:     Jax Clayton
 * Created:    8/3/2025

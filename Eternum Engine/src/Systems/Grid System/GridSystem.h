@@ -66,6 +66,7 @@ public:
 
     // Map management
     void CreateMap(const std::string& name, const Dimension& dimensions, char fill = '.');
+    void AddMap(const std::string& name, const Grid& map);
     bool LoadMap(const std::string& name);
     void DeleteMap(const std::string& name);
     void ClearMaps();
