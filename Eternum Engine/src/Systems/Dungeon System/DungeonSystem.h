@@ -36,7 +36,7 @@ public:
         int m_Width;
         int m_Height;
 
-        Room(int x, int y, int w, int h)
+        Room(const int x, const int y, const int w, const int h)
             : m_X(x), m_Y(y), m_Width(w), m_Height(h) {}
     };
 

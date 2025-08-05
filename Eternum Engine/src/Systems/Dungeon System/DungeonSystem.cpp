@@ -10,7 +10,7 @@
 * License:    MIT License (see LICENSE file in project root)
 *******************************************************************************************/
 #include "DungeonSystem.h"
-#include <Systems/Grid System/Key/Key.h>
+#include <Systems/Input/Key/Key.h>
 #include <Systems/Input/InputSystem.h>
 
 // ----------------------------------------------------------------
@@ -66,7 +66,7 @@ Dimension DungeonSystem::GetRandomRoomCenter() const
 }
 
  Dimension DungeonSystem::GetRandomTileInRoom(const Room& room)
- {
+{
     static std::mt19937 rng(static_cast<unsigned>(time(nullptr)));
     std::uniform_int_distribution<int> xDist(room.m_X + 1, room.m_X + room.m_Width - 2);
     std::uniform_int_distribution<int> yDist(room.m_Y + 1, room.m_Y + room.m_Height - 2);

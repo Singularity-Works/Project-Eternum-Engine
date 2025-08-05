@@ -14,7 +14,7 @@
 
 #pragma once
 #include <Systems/system.h>
-#include <Systems/Grid System/Key/Key.h>
+#include <Systems/Input/Key/Key.h>
 
 class InputSystem final : public System
 {
@@ -38,7 +38,7 @@ public:
     bool    IsKeyPressed(Key key = Key::UNKNOWN);
 
     /// @return true as long as the key stays down
-    static bool IsKeyDown(Key key = Key::UNKNOWN);
+    bool IsKeyDown(Key key = Key::UNKNOWN);
 
 private:
     explicit InputSystem();
@@ -49,7 +49,8 @@ private:
     /// log it and return the char
     static char MapKey(Key k);
 
-    bool m_lastDown = false;
+    std::unordered_map<Key, bool> m_CurrentState;
+    std::unordered_map<Key, bool> m_PreviousState;
 };
 
 static InputSystem* Input()

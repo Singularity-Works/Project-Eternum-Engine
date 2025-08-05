@@ -24,13 +24,27 @@ void InputSystem::Shutdown(){ System::Shutdown(); }
 
 void InputSystem::Update(double dt)
 {
+    // Copy current state to previous state
+    m_PreviousState = m_CurrentState;
+
+    // Check for a key press this frame
+    const Key pressedKey = KeyPressed();
+    if (pressedKey != Key::INVALID && pressedKey != Key::UNKNOWN)
+    {
+        m_CurrentState[pressedKey] = true;
+    }
+    else
+    {
+        // Reset keys not pressed in this frame
+        m_CurrentState.clear();
+    }
+
     if (IsKeyPressed(Key::ESC))
     {
         std::cout << "Exiting..." << std::endl;
         RuntimeSystem()->Stop();
     }
 }
-
 //— read, normalize, log, return
 Key InputSystem::KeyPressed()
 {
@@ -61,7 +75,7 @@ Key InputSystem::KeyPressed()
 
     if (raw == EOF) return Key::UNKNOWN;
 #endif
-    Key k = NormalizeKey(raw);
+    const Key k = NormalizeKey(raw);
     MapKey(k);
     return k;
 }
@@ -76,23 +90,18 @@ Key InputSystem::NormalizeKey(int raw)
 
 char InputSystem::MapKey(Key k)
 {
-    char c = static_cast<char>(static_cast<int>(k));
+    const char c = static_cast<char>(static_cast<int>(k));
     return c;
 }
 
-bool InputSystem::IsKeyPressed(Key key)
+bool InputSystem::IsKeyPressed(const Key key)
 {
-    const Key cur = KeyPressed();
-    const bool hit = (key == Key::ANY)
-               ? (cur != Key::INVALID && cur != Key::UNKNOWN)
-               : (cur == key);
-
-    const bool justDown = hit && !m_lastDown;
-    m_lastDown = hit;
-    return justDown;
+    // Key was not down the last frame but is down this frame
+    return m_CurrentState[key] && !m_PreviousState[key];
 }
 
 bool InputSystem::IsKeyDown(const Key key)
 {
-    return (KeyPressed() == key);
+    // Key is currently down this frame
+    return m_CurrentState[key];
 }
