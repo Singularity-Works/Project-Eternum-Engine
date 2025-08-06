@@ -16,8 +16,8 @@
 
 #ifndef RUNTIME_H
 #define RUNTIME_H
+
 #include <Systems/system.h>
-#include <Systems/AllSystems.h>
 
 class Runtime
 {
@@ -84,8 +84,8 @@ private:
     double m_LastTime = 0.0;
     double m_Accumulator = 0.0;
     const double m_FixedDeltaTime = 0.016;
-};
 
+};
 
 // Static Runtime instance call
 inline Runtime* RuntimeSystem()

@@ -262,6 +262,30 @@ gtest_main/fast:
 	$(MAKE) $(MAKESILENT) -f "Eternum Engine\third_party\googletest\googletest\CMakeFiles\gtest_main.dir\build.make" "Eternum Engine/third_party/googletest/googletest/CMakeFiles/gtest_main.dir/build"
 .PHONY : gtest_main/fast
 
+Eternum_Engine/src/Core/ECS/Entity/Entity.obj: Eternum_Engine/src/Core/ECS/Entity/Entity.cpp.obj
+.PHONY : Eternum_Engine/src/Core/ECS/Entity/Entity.obj
+
+# target to build an object file
+Eternum_Engine/src/Core/ECS/Entity/Entity.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\eternum-engine-lib.dir\build.make CMakeFiles/eternum-engine-lib.dir/Eternum_Engine/src/Core/ECS/Entity/Entity.cpp.obj
+.PHONY : Eternum_Engine/src/Core/ECS/Entity/Entity.cpp.obj
+
+Eternum_Engine/src/Core/ECS/Entity/Entity.i: Eternum_Engine/src/Core/ECS/Entity/Entity.cpp.i
+.PHONY : Eternum_Engine/src/Core/ECS/Entity/Entity.i
+
+# target to preprocess a source file
+Eternum_Engine/src/Core/ECS/Entity/Entity.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\eternum-engine-lib.dir\build.make CMakeFiles/eternum-engine-lib.dir/Eternum_Engine/src/Core/ECS/Entity/Entity.cpp.i
+.PHONY : Eternum_Engine/src/Core/ECS/Entity/Entity.cpp.i
+
+Eternum_Engine/src/Core/ECS/Entity/Entity.s: Eternum_Engine/src/Core/ECS/Entity/Entity.cpp.s
+.PHONY : Eternum_Engine/src/Core/ECS/Entity/Entity.s
+
+# target to generate assembly for a file
+Eternum_Engine/src/Core/ECS/Entity/Entity.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\eternum-engine-lib.dir\build.make CMakeFiles/eternum-engine-lib.dir/Eternum_Engine/src/Core/ECS/Entity/Entity.cpp.s
+.PHONY : Eternum_Engine/src/Core/ECS/Entity/Entity.cpp.s
+
 Eternum_Engine/src/Core/Runtime/Runtime.obj: Eternum_Engine/src/Core/Runtime/Runtime.cpp.obj
 .PHONY : Eternum_Engine/src/Core/Runtime/Runtime.obj
 
@@ -310,6 +334,54 @@ Eternum_Engine/src/Core/pch/pch.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\eternum-engine-lib.dir\build.make CMakeFiles/eternum-engine-lib.dir/Eternum_Engine/src/Core/pch/pch.cpp.s
 .PHONY : Eternum_Engine/src/Core/pch/pch.cpp.s
 
+Eternum_Engine/src/Systems/Dungeon_System/DungeonSystem.obj: Eternum_Engine/src/Systems/Dungeon_System/DungeonSystem.cpp.obj
+.PHONY : Eternum_Engine/src/Systems/Dungeon_System/DungeonSystem.obj
+
+# target to build an object file
+Eternum_Engine/src/Systems/Dungeon_System/DungeonSystem.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\eternum-engine-lib.dir\build.make CMakeFiles/eternum-engine-lib.dir/Eternum_Engine/src/Systems/Dungeon_System/DungeonSystem.cpp.obj
+.PHONY : Eternum_Engine/src/Systems/Dungeon_System/DungeonSystem.cpp.obj
+
+Eternum_Engine/src/Systems/Dungeon_System/DungeonSystem.i: Eternum_Engine/src/Systems/Dungeon_System/DungeonSystem.cpp.i
+.PHONY : Eternum_Engine/src/Systems/Dungeon_System/DungeonSystem.i
+
+# target to preprocess a source file
+Eternum_Engine/src/Systems/Dungeon_System/DungeonSystem.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\eternum-engine-lib.dir\build.make CMakeFiles/eternum-engine-lib.dir/Eternum_Engine/src/Systems/Dungeon_System/DungeonSystem.cpp.i
+.PHONY : Eternum_Engine/src/Systems/Dungeon_System/DungeonSystem.cpp.i
+
+Eternum_Engine/src/Systems/Dungeon_System/DungeonSystem.s: Eternum_Engine/src/Systems/Dungeon_System/DungeonSystem.cpp.s
+.PHONY : Eternum_Engine/src/Systems/Dungeon_System/DungeonSystem.s
+
+# target to generate assembly for a file
+Eternum_Engine/src/Systems/Dungeon_System/DungeonSystem.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\eternum-engine-lib.dir\build.make CMakeFiles/eternum-engine-lib.dir/Eternum_Engine/src/Systems/Dungeon_System/DungeonSystem.cpp.s
+.PHONY : Eternum_Engine/src/Systems/Dungeon_System/DungeonSystem.cpp.s
+
+Eternum_Engine/src/Systems/Grid_System/GridSystem.obj: Eternum_Engine/src/Systems/Grid_System/GridSystem.cpp.obj
+.PHONY : Eternum_Engine/src/Systems/Grid_System/GridSystem.obj
+
+# target to build an object file
+Eternum_Engine/src/Systems/Grid_System/GridSystem.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\eternum-engine-lib.dir\build.make CMakeFiles/eternum-engine-lib.dir/Eternum_Engine/src/Systems/Grid_System/GridSystem.cpp.obj
+.PHONY : Eternum_Engine/src/Systems/Grid_System/GridSystem.cpp.obj
+
+Eternum_Engine/src/Systems/Grid_System/GridSystem.i: Eternum_Engine/src/Systems/Grid_System/GridSystem.cpp.i
+.PHONY : Eternum_Engine/src/Systems/Grid_System/GridSystem.i
+
+# target to preprocess a source file
+Eternum_Engine/src/Systems/Grid_System/GridSystem.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\eternum-engine-lib.dir\build.make CMakeFiles/eternum-engine-lib.dir/Eternum_Engine/src/Systems/Grid_System/GridSystem.cpp.i
+.PHONY : Eternum_Engine/src/Systems/Grid_System/GridSystem.cpp.i
+
+Eternum_Engine/src/Systems/Grid_System/GridSystem.s: Eternum_Engine/src/Systems/Grid_System/GridSystem.cpp.s
+.PHONY : Eternum_Engine/src/Systems/Grid_System/GridSystem.s
+
+# target to generate assembly for a file
+Eternum_Engine/src/Systems/Grid_System/GridSystem.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\eternum-engine-lib.dir\build.make CMakeFiles/eternum-engine-lib.dir/Eternum_Engine/src/Systems/Grid_System/GridSystem.cpp.s
+.PHONY : Eternum_Engine/src/Systems/Grid_System/GridSystem.cpp.s
+
 Eternum_Engine/src/Systems/Input/InputSystem.obj: Eternum_Engine/src/Systems/Input/InputSystem.cpp.obj
 .PHONY : Eternum_Engine/src/Systems/Input/InputSystem.obj
 
@@ -357,6 +429,54 @@ Eternum_Engine/src/main.s: Eternum_Engine/src/main.cpp.s
 Eternum_Engine/src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\eternum-engine.dir\build.make CMakeFiles/eternum-engine.dir/Eternum_Engine/src/main.cpp.s
 .PHONY : Eternum_Engine/src/main.cpp.s
+
+Unit_Tests/ComponentTests.obj: Unit_Tests/ComponentTests.cpp.obj
+.PHONY : Unit_Tests/ComponentTests.obj
+
+# target to build an object file
+Unit_Tests/ComponentTests.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\eternum-tests.dir\build.make CMakeFiles/eternum-tests.dir/Unit_Tests/ComponentTests.cpp.obj
+.PHONY : Unit_Tests/ComponentTests.cpp.obj
+
+Unit_Tests/ComponentTests.i: Unit_Tests/ComponentTests.cpp.i
+.PHONY : Unit_Tests/ComponentTests.i
+
+# target to preprocess a source file
+Unit_Tests/ComponentTests.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\eternum-tests.dir\build.make CMakeFiles/eternum-tests.dir/Unit_Tests/ComponentTests.cpp.i
+.PHONY : Unit_Tests/ComponentTests.cpp.i
+
+Unit_Tests/ComponentTests.s: Unit_Tests/ComponentTests.cpp.s
+.PHONY : Unit_Tests/ComponentTests.s
+
+# target to generate assembly for a file
+Unit_Tests/ComponentTests.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\eternum-tests.dir\build.make CMakeFiles/eternum-tests.dir/Unit_Tests/ComponentTests.cpp.s
+.PHONY : Unit_Tests/ComponentTests.cpp.s
+
+Unit_Tests/GridSystemTests.obj: Unit_Tests/GridSystemTests.cpp.obj
+.PHONY : Unit_Tests/GridSystemTests.obj
+
+# target to build an object file
+Unit_Tests/GridSystemTests.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\eternum-tests.dir\build.make CMakeFiles/eternum-tests.dir/Unit_Tests/GridSystemTests.cpp.obj
+.PHONY : Unit_Tests/GridSystemTests.cpp.obj
+
+Unit_Tests/GridSystemTests.i: Unit_Tests/GridSystemTests.cpp.i
+.PHONY : Unit_Tests/GridSystemTests.i
+
+# target to preprocess a source file
+Unit_Tests/GridSystemTests.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\eternum-tests.dir\build.make CMakeFiles/eternum-tests.dir/Unit_Tests/GridSystemTests.cpp.i
+.PHONY : Unit_Tests/GridSystemTests.cpp.i
+
+Unit_Tests/GridSystemTests.s: Unit_Tests/GridSystemTests.cpp.s
+.PHONY : Unit_Tests/GridSystemTests.s
+
+# target to generate assembly for a file
+Unit_Tests/GridSystemTests.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\eternum-tests.dir\build.make CMakeFiles/eternum-tests.dir/Unit_Tests/GridSystemTests.cpp.s
+.PHONY : Unit_Tests/GridSystemTests.cpp.s
 
 Unit_Tests/SystemRegistryTests.obj: Unit_Tests/SystemRegistryTests.cpp.obj
 .PHONY : Unit_Tests/SystemRegistryTests.obj
@@ -444,18 +564,33 @@ help:
 	@echo ... gmock_main
 	@echo ... gtest
 	@echo ... gtest_main
+	@echo ... Eternum_Engine/src/Core/ECS/Entity/Entity.obj
+	@echo ... Eternum_Engine/src/Core/ECS/Entity/Entity.i
+	@echo ... Eternum_Engine/src/Core/ECS/Entity/Entity.s
 	@echo ... Eternum_Engine/src/Core/Runtime/Runtime.obj
 	@echo ... Eternum_Engine/src/Core/Runtime/Runtime.i
 	@echo ... Eternum_Engine/src/Core/Runtime/Runtime.s
 	@echo ... Eternum_Engine/src/Core/pch/pch.obj
 	@echo ... Eternum_Engine/src/Core/pch/pch.i
 	@echo ... Eternum_Engine/src/Core/pch/pch.s
+	@echo ... Eternum_Engine/src/Systems/Dungeon_System/DungeonSystem.obj
+	@echo ... Eternum_Engine/src/Systems/Dungeon_System/DungeonSystem.i
+	@echo ... Eternum_Engine/src/Systems/Dungeon_System/DungeonSystem.s
+	@echo ... Eternum_Engine/src/Systems/Grid_System/GridSystem.obj
+	@echo ... Eternum_Engine/src/Systems/Grid_System/GridSystem.i
+	@echo ... Eternum_Engine/src/Systems/Grid_System/GridSystem.s
 	@echo ... Eternum_Engine/src/Systems/Input/InputSystem.obj
 	@echo ... Eternum_Engine/src/Systems/Input/InputSystem.i
 	@echo ... Eternum_Engine/src/Systems/Input/InputSystem.s
 	@echo ... Eternum_Engine/src/main.obj
 	@echo ... Eternum_Engine/src/main.i
 	@echo ... Eternum_Engine/src/main.s
+	@echo ... Unit_Tests/ComponentTests.obj
+	@echo ... Unit_Tests/ComponentTests.i
+	@echo ... Unit_Tests/ComponentTests.s
+	@echo ... Unit_Tests/GridSystemTests.obj
+	@echo ... Unit_Tests/GridSystemTests.i
+	@echo ... Unit_Tests/GridSystemTests.s
 	@echo ... Unit_Tests/SystemRegistryTests.obj
 	@echo ... Unit_Tests/SystemRegistryTests.i
 	@echo ... Unit_Tests/SystemRegistryTests.s

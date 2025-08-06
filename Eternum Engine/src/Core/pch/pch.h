@@ -30,6 +30,8 @@
 #include <thread>
 #include <cstdlib>
 #include <ctime>
+#include <typeindex>
+
 
 #ifdef _WIN32
    #include <Windows.h>
@@ -42,5 +44,31 @@
 
 // Internal headers
 #include <Systems/system.h>
+
+// Global utility functions
+
+inline unsigned GetUniqueId()
+{
+    static unsigned nextId = 0;
+    return nextId++;
+}
+
+inline std::string PrefixlessName(const std::type_index& type) {
+    const std::string name = type.name();
+
+    size_t i = 0;
+    while (i < name.size() && std::isdigit(name[i])) {
+        ++i;
+    }
+
+    return name.substr(i);
+}
+
+
+inline bool StartsWith(const std::string& str, const std::string& prefix) {
+    return str.size() >= prefix.size() &&
+           std::equal(prefix.begin(), prefix.end(), str.begin());
+}
+
 
 #endif //PCH_H

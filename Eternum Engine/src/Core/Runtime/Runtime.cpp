@@ -3,7 +3,7 @@
 * -----------------------------------------------------------------------------------------
 * File: Runtime
 * Description:
-*     TODO: Describe the purpose of this file.
+*       The core runtime loop for the Eternum Engine, managing the main update/render cycle,
 *
 * Author:     Jax Clayton
 * Created:    8/2/2025
@@ -11,7 +11,9 @@
 *******************************************************************************************/
 // ReSharper Disable all
 #include <pch.h>
+
 #include "Runtime.h"
+#include <Systems/AllSystems.h>
 
 Runtime::~Runtime() = default;
 Runtime::Runtime() = default;

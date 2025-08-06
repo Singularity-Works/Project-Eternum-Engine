@@ -85,8 +85,21 @@ void GridSystem::Render()
     for (int y = 0; y < grid.m_Dimension.m_Height; ++y)
     {
         for (int x = 0; x < grid.m_Dimension.m_Width; ++x)
-            std::cout << grid.GetCell(x, y);
-        std::cout << '\n';
+        {
+
+            char cell = grid.GetCell(x, y);
+
+            // Use a map to associate characters with colors
+            auto it = TILE_COLORS.find(cell);
+
+            if (it != TILE_COLORS.end())
+                std::cout << it->second << cell;
+            else
+                std::cout << RESET << cell; // Default color
+        }
+
+        // End of line for the current row
+        std::cout << RESET << '\n';
     }
 
     // we’re now up to date

@@ -86,6 +86,18 @@ public:
         std::cout << "\033[2J\033[H"; // ANSI escape code to clear console
     }
 
+    inline static const std::unordered_map<char, const char*> TILE_COLORS = {
+        { '#', "\x1b[90m" }, // Wall (gray)
+        { '.', "\x1b[33m" }, // Floor (yellow)
+        { ' ', "\x1b[30m" }, // Empty (black)
+        { '@', "\x1b[31m" }, // Player (red)
+        { 'E', "\x1b[35m" }, // Enemy (magenta)
+        { 'D', "\x1b[36m" }, // Door (cyan)
+        { '~', "\x1b[34m" }, // Water (blue)
+    };
+
+    const char* RESET = "\x1b[0m";
+
     // -------------------------------------------------------------------
     // Singleton pattern to ensure only one instance of GridSystem exists
     // -------------------------------------------------------------------
