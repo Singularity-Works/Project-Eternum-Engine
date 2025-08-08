@@ -262,29 +262,29 @@ gtest_main/fast:
 	$(MAKE) $(MAKESILENT) -f "Eternum Engine\third_party\googletest\googletest\CMakeFiles\gtest_main.dir\build.make" "Eternum Engine/third_party/googletest/googletest/CMakeFiles/gtest_main.dir/build"
 .PHONY : gtest_main/fast
 
-Eternum_Engine/src/Core/ECS/Component/Physics/PhysicsComponent.obj: Eternum_Engine/src/Core/ECS/Component/Physics/PhysicsComponent.cpp.obj
-.PHONY : Eternum_Engine/src/Core/ECS/Component/Physics/PhysicsComponent.obj
+Eternum_Engine/src/Core/ECS/Component/Transform/Transform.obj: Eternum_Engine/src/Core/ECS/Component/Transform/Transform.cpp.obj
+.PHONY : Eternum_Engine/src/Core/ECS/Component/Transform/Transform.obj
 
 # target to build an object file
-Eternum_Engine/src/Core/ECS/Component/Physics/PhysicsComponent.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\eternum-engine-lib.dir\build.make CMakeFiles/eternum-engine-lib.dir/Eternum_Engine/src/Core/ECS/Component/Physics/PhysicsComponent.cpp.obj
-.PHONY : Eternum_Engine/src/Core/ECS/Component/Physics/PhysicsComponent.cpp.obj
+Eternum_Engine/src/Core/ECS/Component/Transform/Transform.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\eternum-engine-lib.dir\build.make CMakeFiles/eternum-engine-lib.dir/Eternum_Engine/src/Core/ECS/Component/Transform/Transform.cpp.obj
+.PHONY : Eternum_Engine/src/Core/ECS/Component/Transform/Transform.cpp.obj
 
-Eternum_Engine/src/Core/ECS/Component/Physics/PhysicsComponent.i: Eternum_Engine/src/Core/ECS/Component/Physics/PhysicsComponent.cpp.i
-.PHONY : Eternum_Engine/src/Core/ECS/Component/Physics/PhysicsComponent.i
+Eternum_Engine/src/Core/ECS/Component/Transform/Transform.i: Eternum_Engine/src/Core/ECS/Component/Transform/Transform.cpp.i
+.PHONY : Eternum_Engine/src/Core/ECS/Component/Transform/Transform.i
 
 # target to preprocess a source file
-Eternum_Engine/src/Core/ECS/Component/Physics/PhysicsComponent.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\eternum-engine-lib.dir\build.make CMakeFiles/eternum-engine-lib.dir/Eternum_Engine/src/Core/ECS/Component/Physics/PhysicsComponent.cpp.i
-.PHONY : Eternum_Engine/src/Core/ECS/Component/Physics/PhysicsComponent.cpp.i
+Eternum_Engine/src/Core/ECS/Component/Transform/Transform.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\eternum-engine-lib.dir\build.make CMakeFiles/eternum-engine-lib.dir/Eternum_Engine/src/Core/ECS/Component/Transform/Transform.cpp.i
+.PHONY : Eternum_Engine/src/Core/ECS/Component/Transform/Transform.cpp.i
 
-Eternum_Engine/src/Core/ECS/Component/Physics/PhysicsComponent.s: Eternum_Engine/src/Core/ECS/Component/Physics/PhysicsComponent.cpp.s
-.PHONY : Eternum_Engine/src/Core/ECS/Component/Physics/PhysicsComponent.s
+Eternum_Engine/src/Core/ECS/Component/Transform/Transform.s: Eternum_Engine/src/Core/ECS/Component/Transform/Transform.cpp.s
+.PHONY : Eternum_Engine/src/Core/ECS/Component/Transform/Transform.s
 
 # target to generate assembly for a file
-Eternum_Engine/src/Core/ECS/Component/Physics/PhysicsComponent.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\eternum-engine-lib.dir\build.make CMakeFiles/eternum-engine-lib.dir/Eternum_Engine/src/Core/ECS/Component/Physics/PhysicsComponent.cpp.s
-.PHONY : Eternum_Engine/src/Core/ECS/Component/Physics/PhysicsComponent.cpp.s
+Eternum_Engine/src/Core/ECS/Component/Transform/Transform.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\eternum-engine-lib.dir\build.make CMakeFiles/eternum-engine-lib.dir/Eternum_Engine/src/Core/ECS/Component/Transform/Transform.cpp.s
+.PHONY : Eternum_Engine/src/Core/ECS/Component/Transform/Transform.cpp.s
 
 Eternum_Engine/src/Core/ECS/Entity/Entity.obj: Eternum_Engine/src/Core/ECS/Entity/Entity.cpp.obj
 .PHONY : Eternum_Engine/src/Core/ECS/Entity/Entity.obj
@@ -598,6 +598,30 @@ Unit_Tests/SystemTests.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\eternum-tests.dir\build.make CMakeFiles/eternum-tests.dir/Unit_Tests/SystemTests.cpp.s
 .PHONY : Unit_Tests/SystemTests.cpp.s
 
+Unit_Tests/VectorTests.obj: Unit_Tests/VectorTests.cpp.obj
+.PHONY : Unit_Tests/VectorTests.obj
+
+# target to build an object file
+Unit_Tests/VectorTests.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\eternum-tests.dir\build.make CMakeFiles/eternum-tests.dir/Unit_Tests/VectorTests.cpp.obj
+.PHONY : Unit_Tests/VectorTests.cpp.obj
+
+Unit_Tests/VectorTests.i: Unit_Tests/VectorTests.cpp.i
+.PHONY : Unit_Tests/VectorTests.i
+
+# target to preprocess a source file
+Unit_Tests/VectorTests.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\eternum-tests.dir\build.make CMakeFiles/eternum-tests.dir/Unit_Tests/VectorTests.cpp.i
+.PHONY : Unit_Tests/VectorTests.cpp.i
+
+Unit_Tests/VectorTests.s: Unit_Tests/VectorTests.cpp.s
+.PHONY : Unit_Tests/VectorTests.s
+
+# target to generate assembly for a file
+Unit_Tests/VectorTests.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\eternum-tests.dir\build.make CMakeFiles/eternum-tests.dir/Unit_Tests/VectorTests.cpp.s
+.PHONY : Unit_Tests/VectorTests.cpp.s
+
 # target to build an object file
 cmake_pch.hxx.gch:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\eternum-engine-lib.dir\build.make CMakeFiles/eternum-engine-lib.dir/cmake_pch.hxx.gch
@@ -636,9 +660,9 @@ help:
 	@echo ... gmock_main
 	@echo ... gtest
 	@echo ... gtest_main
-	@echo ... Eternum_Engine/src/Core/ECS/Component/Physics/PhysicsComponent.obj
-	@echo ... Eternum_Engine/src/Core/ECS/Component/Physics/PhysicsComponent.i
-	@echo ... Eternum_Engine/src/Core/ECS/Component/Physics/PhysicsComponent.s
+	@echo ... Eternum_Engine/src/Core/ECS/Component/Transform/Transform.obj
+	@echo ... Eternum_Engine/src/Core/ECS/Component/Transform/Transform.i
+	@echo ... Eternum_Engine/src/Core/ECS/Component/Transform/Transform.s
 	@echo ... Eternum_Engine/src/Core/ECS/Entity/Entity.obj
 	@echo ... Eternum_Engine/src/Core/ECS/Entity/Entity.i
 	@echo ... Eternum_Engine/src/Core/ECS/Entity/Entity.s
@@ -678,6 +702,9 @@ help:
 	@echo ... Unit_Tests/SystemTests.obj
 	@echo ... Unit_Tests/SystemTests.i
 	@echo ... Unit_Tests/SystemTests.s
+	@echo ... Unit_Tests/VectorTests.obj
+	@echo ... Unit_Tests/VectorTests.i
+	@echo ... Unit_Tests/VectorTests.s
 	@echo ... cmake_pch.hxx.gch
 	@echo ... cmake_pch.hxx.i
 	@echo ... cmake_pch.hxx.s

@@ -1,7 +1,7 @@
 ﻿/*******************************************************************************************
 * Project Eternum Engine
 * -----------------------------------------------------------------------------------------
-* File: PhysicsComponent
+* File: Transform
 * Description:
 *     TODO: Describe the purpose of this file.
 *
@@ -11,9 +11,4 @@
 *******************************************************************************************/
 
 #include <pch.h>
-#include "PhysicsComponent.h"
-
-Component* PhysicsComponent::Clone() const {
-    return new PhysicsComponent(*this);
-}
-
+#include "Transform.h"

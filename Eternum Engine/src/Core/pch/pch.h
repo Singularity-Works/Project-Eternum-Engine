@@ -44,6 +44,7 @@
 
 // Internal headers
 #include <Systems/system.h>
+#include <Core/Vector/Vector.h>
 
 // Global utility functions
 

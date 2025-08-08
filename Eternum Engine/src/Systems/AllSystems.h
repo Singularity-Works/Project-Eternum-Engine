@@ -19,5 +19,8 @@
 
 
 // Component Systems
-#include <Core/ECS/Component/Physics/PhysicsComponent.h>
+#include <Core/ECS/Component/Transform/Transform.h>
+
+
+
 #endif //ALLSYSTEMS_H
