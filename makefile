@@ -454,6 +454,30 @@ Unit_Tests/ComponentTests.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\eternum-tests.dir\build.make CMakeFiles/eternum-tests.dir/Unit_Tests/ComponentTests.cpp.s
 .PHONY : Unit_Tests/ComponentTests.cpp.s
 
+Unit_Tests/EntityTests.obj: Unit_Tests/EntityTests.cpp.obj
+.PHONY : Unit_Tests/EntityTests.obj
+
+# target to build an object file
+Unit_Tests/EntityTests.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\eternum-tests.dir\build.make CMakeFiles/eternum-tests.dir/Unit_Tests/EntityTests.cpp.obj
+.PHONY : Unit_Tests/EntityTests.cpp.obj
+
+Unit_Tests/EntityTests.i: Unit_Tests/EntityTests.cpp.i
+.PHONY : Unit_Tests/EntityTests.i
+
+# target to preprocess a source file
+Unit_Tests/EntityTests.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\eternum-tests.dir\build.make CMakeFiles/eternum-tests.dir/Unit_Tests/EntityTests.cpp.i
+.PHONY : Unit_Tests/EntityTests.cpp.i
+
+Unit_Tests/EntityTests.s: Unit_Tests/EntityTests.cpp.s
+.PHONY : Unit_Tests/EntityTests.s
+
+# target to generate assembly for a file
+Unit_Tests/EntityTests.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\eternum-tests.dir\build.make CMakeFiles/eternum-tests.dir/Unit_Tests/EntityTests.cpp.s
+.PHONY : Unit_Tests/EntityTests.cpp.s
+
 Unit_Tests/GridSystemTests.obj: Unit_Tests/GridSystemTests.cpp.obj
 .PHONY : Unit_Tests/GridSystemTests.obj
 
@@ -588,6 +612,9 @@ help:
 	@echo ... Unit_Tests/ComponentTests.obj
 	@echo ... Unit_Tests/ComponentTests.i
 	@echo ... Unit_Tests/ComponentTests.s
+	@echo ... Unit_Tests/EntityTests.obj
+	@echo ... Unit_Tests/EntityTests.i
+	@echo ... Unit_Tests/EntityTests.s
 	@echo ... Unit_Tests/GridSystemTests.obj
 	@echo ... Unit_Tests/GridSystemTests.i
 	@echo ... Unit_Tests/GridSystemTests.s

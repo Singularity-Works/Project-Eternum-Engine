@@ -13,7 +13,7 @@
 #include <Core/ECS/Component/Component.h>
 #include <Core/ECS/Entity/Entity.h>
 
-// Mock Entity to satisfy GetName() call
+
 class MockEntity : public Entity {
 
 public:
@@ -39,13 +39,13 @@ public:
 // ----------------------------
 
 TEST(ComponentTests, UniqueIdGeneration) {
-    TestComponent c1;
-    TestComponent c2;
+    const TestComponent c1;
+    const TestComponent c2;
     EXPECT_NE(c1.GetId(), c2.GetId()) << "Component IDs should be unique";
 }
 
 TEST(ComponentTests, TypeMatchesExpected) {
-    TestComponent comp;
+    const TestComponent comp;
     EXPECT_EQ(comp.GetType(), typeid(TestComponent));
 }
 
