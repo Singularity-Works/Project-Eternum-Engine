@@ -17,4 +17,7 @@
 #include <Systems/Grid System/GridSystem.h>
 #include <Systems/Dungeon System/DungeonSystem.h>
 
+
+// Component Systems
+#include <Core/ECS/Component/Physics/PhysicsComponent.h>
 #endif //ALLSYSTEMS_H

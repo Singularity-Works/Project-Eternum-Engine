@@ -262,6 +262,30 @@ gtest_main/fast:
 	$(MAKE) $(MAKESILENT) -f "Eternum Engine\third_party\googletest\googletest\CMakeFiles\gtest_main.dir\build.make" "Eternum Engine/third_party/googletest/googletest/CMakeFiles/gtest_main.dir/build"
 .PHONY : gtest_main/fast
 
+Eternum_Engine/src/Core/ECS/Component/Physics/PhysicsComponent.obj: Eternum_Engine/src/Core/ECS/Component/Physics/PhysicsComponent.cpp.obj
+.PHONY : Eternum_Engine/src/Core/ECS/Component/Physics/PhysicsComponent.obj
+
+# target to build an object file
+Eternum_Engine/src/Core/ECS/Component/Physics/PhysicsComponent.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\eternum-engine-lib.dir\build.make CMakeFiles/eternum-engine-lib.dir/Eternum_Engine/src/Core/ECS/Component/Physics/PhysicsComponent.cpp.obj
+.PHONY : Eternum_Engine/src/Core/ECS/Component/Physics/PhysicsComponent.cpp.obj
+
+Eternum_Engine/src/Core/ECS/Component/Physics/PhysicsComponent.i: Eternum_Engine/src/Core/ECS/Component/Physics/PhysicsComponent.cpp.i
+.PHONY : Eternum_Engine/src/Core/ECS/Component/Physics/PhysicsComponent.i
+
+# target to preprocess a source file
+Eternum_Engine/src/Core/ECS/Component/Physics/PhysicsComponent.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\eternum-engine-lib.dir\build.make CMakeFiles/eternum-engine-lib.dir/Eternum_Engine/src/Core/ECS/Component/Physics/PhysicsComponent.cpp.i
+.PHONY : Eternum_Engine/src/Core/ECS/Component/Physics/PhysicsComponent.cpp.i
+
+Eternum_Engine/src/Core/ECS/Component/Physics/PhysicsComponent.s: Eternum_Engine/src/Core/ECS/Component/Physics/PhysicsComponent.cpp.s
+.PHONY : Eternum_Engine/src/Core/ECS/Component/Physics/PhysicsComponent.s
+
+# target to generate assembly for a file
+Eternum_Engine/src/Core/ECS/Component/Physics/PhysicsComponent.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\eternum-engine-lib.dir\build.make CMakeFiles/eternum-engine-lib.dir/Eternum_Engine/src/Core/ECS/Component/Physics/PhysicsComponent.cpp.s
+.PHONY : Eternum_Engine/src/Core/ECS/Component/Physics/PhysicsComponent.cpp.s
+
 Eternum_Engine/src/Core/ECS/Entity/Entity.obj: Eternum_Engine/src/Core/ECS/Entity/Entity.cpp.obj
 .PHONY : Eternum_Engine/src/Core/ECS/Entity/Entity.obj
 
@@ -333,6 +357,30 @@ Eternum_Engine/src/Core/pch/pch.s: Eternum_Engine/src/Core/pch/pch.cpp.s
 Eternum_Engine/src/Core/pch/pch.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\eternum-engine-lib.dir\build.make CMakeFiles/eternum-engine-lib.dir/Eternum_Engine/src/Core/pch/pch.cpp.s
 .PHONY : Eternum_Engine/src/Core/pch/pch.cpp.s
+
+Eternum_Engine/src/Systems/ComponentSystem/ComponentSystem.obj: Eternum_Engine/src/Systems/ComponentSystem/ComponentSystem.cpp.obj
+.PHONY : Eternum_Engine/src/Systems/ComponentSystem/ComponentSystem.obj
+
+# target to build an object file
+Eternum_Engine/src/Systems/ComponentSystem/ComponentSystem.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\eternum-engine-lib.dir\build.make CMakeFiles/eternum-engine-lib.dir/Eternum_Engine/src/Systems/ComponentSystem/ComponentSystem.cpp.obj
+.PHONY : Eternum_Engine/src/Systems/ComponentSystem/ComponentSystem.cpp.obj
+
+Eternum_Engine/src/Systems/ComponentSystem/ComponentSystem.i: Eternum_Engine/src/Systems/ComponentSystem/ComponentSystem.cpp.i
+.PHONY : Eternum_Engine/src/Systems/ComponentSystem/ComponentSystem.i
+
+# target to preprocess a source file
+Eternum_Engine/src/Systems/ComponentSystem/ComponentSystem.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\eternum-engine-lib.dir\build.make CMakeFiles/eternum-engine-lib.dir/Eternum_Engine/src/Systems/ComponentSystem/ComponentSystem.cpp.i
+.PHONY : Eternum_Engine/src/Systems/ComponentSystem/ComponentSystem.cpp.i
+
+Eternum_Engine/src/Systems/ComponentSystem/ComponentSystem.s: Eternum_Engine/src/Systems/ComponentSystem/ComponentSystem.cpp.s
+.PHONY : Eternum_Engine/src/Systems/ComponentSystem/ComponentSystem.s
+
+# target to generate assembly for a file
+Eternum_Engine/src/Systems/ComponentSystem/ComponentSystem.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\eternum-engine-lib.dir\build.make CMakeFiles/eternum-engine-lib.dir/Eternum_Engine/src/Systems/ComponentSystem/ComponentSystem.cpp.s
+.PHONY : Eternum_Engine/src/Systems/ComponentSystem/ComponentSystem.cpp.s
 
 Eternum_Engine/src/Systems/Dungeon_System/DungeonSystem.obj: Eternum_Engine/src/Systems/Dungeon_System/DungeonSystem.cpp.obj
 .PHONY : Eternum_Engine/src/Systems/Dungeon_System/DungeonSystem.obj
@@ -588,6 +636,9 @@ help:
 	@echo ... gmock_main
 	@echo ... gtest
 	@echo ... gtest_main
+	@echo ... Eternum_Engine/src/Core/ECS/Component/Physics/PhysicsComponent.obj
+	@echo ... Eternum_Engine/src/Core/ECS/Component/Physics/PhysicsComponent.i
+	@echo ... Eternum_Engine/src/Core/ECS/Component/Physics/PhysicsComponent.s
 	@echo ... Eternum_Engine/src/Core/ECS/Entity/Entity.obj
 	@echo ... Eternum_Engine/src/Core/ECS/Entity/Entity.i
 	@echo ... Eternum_Engine/src/Core/ECS/Entity/Entity.s
@@ -597,6 +648,9 @@ help:
 	@echo ... Eternum_Engine/src/Core/pch/pch.obj
 	@echo ... Eternum_Engine/src/Core/pch/pch.i
 	@echo ... Eternum_Engine/src/Core/pch/pch.s
+	@echo ... Eternum_Engine/src/Systems/ComponentSystem/ComponentSystem.obj
+	@echo ... Eternum_Engine/src/Systems/ComponentSystem/ComponentSystem.i
+	@echo ... Eternum_Engine/src/Systems/ComponentSystem/ComponentSystem.s
 	@echo ... Eternum_Engine/src/Systems/Dungeon_System/DungeonSystem.obj
 	@echo ... Eternum_Engine/src/Systems/Dungeon_System/DungeonSystem.i
 	@echo ... Eternum_Engine/src/Systems/Dungeon_System/DungeonSystem.s

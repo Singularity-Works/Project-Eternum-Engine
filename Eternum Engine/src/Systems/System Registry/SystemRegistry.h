@@ -64,4 +64,17 @@ SystemType::GetInstance().get());               \
 static SystemType##AutoRegister s_##SystemType##AutoRegisterInstance; \
 }
 
+#define REGISTER_COMPONENT_SYSTEM(ComponentType)                          \
+namespace {                                                               \
+    struct ComponentSystemAutoRegister_##ComponentType {                 \
+        ComponentSystemAutoRegister_##ComponentType() {                  \
+            SystemRegistry::Instance().Register(                         \
+                Components<ComponentType>());          \
+        }                                                                \
+    };                                                                   \
+    static ComponentSystemAutoRegister_##ComponentType                   \
+        instance_ComponentSystemAutoRegister_##ComponentType;            \
+}
+
+
 #endif //SYSTEMREGISTRY_H

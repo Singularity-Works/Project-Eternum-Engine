@@ -13,7 +13,6 @@
 #define COMPONENT_H
 
 #include <pch.h>
-#include <Core/Runtime/Runtime.h>
 #include <Core/ECS/Entity/Entity.h>
 
 class Component

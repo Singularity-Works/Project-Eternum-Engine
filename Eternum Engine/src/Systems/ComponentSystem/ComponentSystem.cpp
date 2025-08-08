@@ -1,26 +1,14 @@
 ﻿/*******************************************************************************************
 * Project Eternum Engine
 * -----------------------------------------------------------------------------------------
-* File: PhysicsComponent
+* File: ComponentSystem
 * Description:
-*     TODO
+*     TODO: Describe the purpose of this file.
 *
 * Author:     Jax Clayton
 * Created:    8/8/2025
 * License:    MIT License (see LICENSE file in project root)
 *******************************************************************************************/
-#ifndef PHYSICSCOMPONENT_H
-#define PHYSICSCOMPONENT_H
 
-#include <Systems/System Registry/SystemRegistry.h>
-#include <Systems/ComponentSystem/ComponentSystem.h>
-
-class PhysicsComponent final : public Component{
-public:
-    Component* Clone() const override;
-};
-
-
-REGISTER_COMPONENT_SYSTEM(PhysicsComponent);
-
-#endif //PHYSICSCOMPONENT_H
+#include <pch.h>
+#include "ComponentSystem.h"
