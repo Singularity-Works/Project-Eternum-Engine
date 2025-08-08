@@ -12,3 +12,8 @@
 
 #include <pch.h>
 #include "PhysicsComponent.h"
+
+Component* PhysicsComponent::Clone() const {
+    return new PhysicsComponent(*this);
+}
+
