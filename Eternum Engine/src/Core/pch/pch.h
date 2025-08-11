@@ -17,10 +17,12 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <algorithm>
+#include <typeindex>
+#include <array>
 #include <map>
 #include <unordered_map>
 #include <memory>
-#include <algorithm>
 #include <cmath>
 #include <chrono>
 #include <thread>
@@ -30,7 +32,6 @@
 #include <thread>
 #include <cstdlib>
 #include <ctime>
-#include <typeindex>
 
 
 #ifdef _WIN32
