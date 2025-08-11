@@ -35,6 +35,10 @@ class ComponentSystem : public System
 
 
 public:
+    void Init() override
+    {
+        std::cout << "Number of Components in system: " <<  GetComponents().size() << "\n";
+    }
     void Update(double deltaTime) override {};
     void FixedUpdate() override {};
     void Render() override {};
@@ -114,5 +118,5 @@ inline ComponentSystem< ComponentType >* Components()
     return ComponentSystem< ComponentType >::GetInstance();
 }
 
-
+REGISTER_COMPONENT_SYSTEM(Component)
 #endif //COMPONENTSYSTEM_H

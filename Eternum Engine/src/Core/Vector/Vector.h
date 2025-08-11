@@ -29,7 +29,7 @@ public:
     //-----------------------------------------------------------------------------
     Vector()
     {
-        if constexpr (std::is_arithmetic<T>::value)
+        if constexpr (std::is_arithmetic_v<T>)
             m_Data.fill(static_cast<T>(0));
         else
             m_Data = {};
@@ -48,7 +48,7 @@ public:
     }
 
     template <typename It>
-    Vector(It first)
+    explicit Vector(It first)
     {
         for (std::size_t i = 0; i < N; ++i, ++first)
             m_Data[i] = static_cast<T>(*first);
@@ -142,7 +142,7 @@ public:
     auto Length() const
     {
         using std::sqrt;
-        if constexpr (std::is_floating_point<T>::value)
+        if constexpr (std::is_floating_point_v<T>)
             return sqrt(LengthSq());
         else
             return std::sqrt(static_cast<long double>(LengthSq()));
@@ -153,7 +153,7 @@ public:
         const auto len = Length();
         if (len == static_cast<decltype(len)>(0)) return *this;
         Vector out(*this);
-        if constexpr (std::is_floating_point<T>::value)
+        if constexpr (std::is_floating_point_v<T>)
             out /= static_cast<T>(len);
         else
         {
@@ -167,7 +167,7 @@ public:
     {
         const auto len = Length();
         if (len == static_cast<decltype(len)>(0)) return;
-        if constexpr (std::is_floating_point<T>::value)
+        if constexpr (std::is_floating_point_v<T>)
             *this /= static_cast<T>(len);
         else
         {
@@ -188,7 +188,7 @@ public:
     bool operator!=(const Vector& rhs) const { return !(*this == rhs); }
 
     template <typename U = T>
-    std::enable_if_t<std::is_floating_point<U>::value, bool>
+    std::enable_if_t<std::is_floating_point_v<U>, bool>
     AlmostEqual(const Vector& rhs, U eps = static_cast<U>(1e-6)) const
     {
         for (std::size_t i = 0; i < N; ++i)

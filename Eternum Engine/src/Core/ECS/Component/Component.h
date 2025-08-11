@@ -119,6 +119,4 @@ private:
     unsigned m_Id;
 };
 
-
-
 #endif //COMPONENT_H
