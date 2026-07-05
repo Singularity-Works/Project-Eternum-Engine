@@ -39,7 +39,7 @@ void Runtime::Run() {
 
         Update(deltaTime);
 
-        while (m_Accumulator >= deltaTime)
+        while (m_Accumulator >= m_FixedDeltaTime)
         {
             FixedUpdate();
             m_Accumulator -= m_FixedDeltaTime;

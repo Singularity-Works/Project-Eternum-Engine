@@ -12,7 +12,6 @@
 
 #include <pch.h>
 #include "GridSystem.h"
-#include <gtest/internal/gtest-internal.h>
 #include "Systems/Input/InputSystem.h"
 
 

@@ -25,7 +25,7 @@ DungeonSystem::DungeonSystem()
 // Utility
 // --------------------------------------------------------
 
-Dimension DungeonSystem::GetRandomRoomCenter() const
+DungeonSystem::Dimension DungeonSystem::GetRandomRoomCenter() const
 {
     if (m_Rooms.empty())
         return { -1, -1 }; // No valid rooms
@@ -37,7 +37,7 @@ Dimension DungeonSystem::GetRandomRoomCenter() const
     return { chosen.m_X + chosen.m_Width / 2, chosen.m_Y + chosen.m_Height / 2 };
 }
 
- Dimension DungeonSystem::GetRandomRoomEdge() const
+DungeonSystem::Dimension DungeonSystem::GetRandomRoomEdge() const
 {
     if (m_Rooms.empty())
         return { -1, -1 };
@@ -65,7 +65,7 @@ Dimension DungeonSystem::GetRandomRoomCenter() const
     return { -1, -1 };
 }
 
- Dimension DungeonSystem::GetRandomTileInRoom(const Room& room)
+DungeonSystem::Dimension DungeonSystem::GetRandomTileInRoom(const Room& room)
 {
     static std::mt19937 rng(static_cast<unsigned>(time(nullptr)));
     std::uniform_int_distribution<int> xDist(room.m_X + 1, room.m_X + room.m_Width - 2);
@@ -74,7 +74,7 @@ Dimension DungeonSystem::GetRandomRoomCenter() const
     return { xDist(rng), yDist(rng) };
 }
 
- Dimension DungeonSystem::GetRandomUnoccupiedTileInRoom(const Room& room, char emptyChar) const
+DungeonSystem::Dimension DungeonSystem::GetRandomUnoccupiedTileInRoom(const Room& room, char emptyChar) const
 {
     for (int attempt = 0; attempt < 50; ++attempt) // avoid infinite loop
     {

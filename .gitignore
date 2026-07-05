@@ -68,3 +68,9 @@ Testing/Temporary/LastTest.log
 /CMakeFiles/3.31.6
 /CMakeFiles
 /Testing
+# CMake in-source artifacts
+/Makefile
+/makefile
+CMakeCache.txt
+cmake_install.cmake
+CTestTestfile.cmake

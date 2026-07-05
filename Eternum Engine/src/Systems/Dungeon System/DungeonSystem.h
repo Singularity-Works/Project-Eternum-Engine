@@ -17,14 +17,20 @@
 #include <Systems/System Registry/SystemRegistry.h>
 #include <Systems/Grid System/GridSystem.h>
 
-#define Dimension GridSystem::Dimension
-
 
 class DungeonSystem final : public System
 {
 
 
 public:
+
+    // ----------------------------------------------------------------
+    // Grid Types
+    // ----------------------------------------------------------------
+
+    // width height pair borrowed from the grid
+    using Dimension = GridSystem::Dimension;
+
 
     // ----------------------------------------------------------------
     // Room Structure
