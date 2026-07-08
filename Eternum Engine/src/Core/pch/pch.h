@@ -28,6 +28,7 @@
 #include <thread>
 #include <functional>
 #include <random>
+#include <limits>
 #include <chrono>
 #include <thread>
 #include <cstdlib>
@@ -35,7 +36,11 @@
 
 
 #ifdef _WIN32
-   #include <Windows.h>
+    // windows defines min and max as macros, which breaks std::min and numeric_limits::max
+    #ifndef NOMINMAX
+        #define NOMINMAX
+    #endif
+    #include <Windows.h>
     #include <conio.h>
 #else // ifdef _WIN32
     #include <unistd.h>
