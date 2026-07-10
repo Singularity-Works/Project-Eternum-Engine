@@ -13,7 +13,11 @@
 #define COMPONENT_H
 
 #include <pch.h>
-#include <Core/ECS/Entity/Entity.h>
+
+// only the forward declaration, the full json header is 900KB and belongs in cpp files
+#include <nlohmann/json_fwd.hpp>
+
+class Entity;
 
 class Component
 {
@@ -37,6 +41,25 @@ public:
     /// @brief  called when this Component's Entity is removed from the Scene
     virtual void OnExit() {};
 
+    /// @brief  called every frame by this Component's ComponentSystem
+    /// @param  deltaTime   seconds since the last frame
+    virtual void OnUpdate( double deltaTime ) {};
+
+    /// @brief  called on fixed intervals by this Component's ComponentSystem
+    virtual void OnFixedUpdate() {};
+
+    /// @brief  called every frame after update by this Component's ComponentSystem
+    virtual void OnRender() {};
+
+    /// @brief  writes this Component's state so it can be saved
+    /// @param  data    the object to write into
+    /// @note   a Component with nothing worth saving may leave this alone
+    virtual void Write( nlohmann::json& data ) const {};
+
+    /// @brief  reads this Component's state back out of a save
+    /// @param  data    the object to read from
+    virtual void Read( nlohmann::json const& data ) {};
+
     /// @brief  called every time after the Entity, this Component is attached to's hierarchy changes
     /// @param  previousParent   the parent of this Entity before the hierarchy change
     virtual void OnHierarchyChange( Entity* previousParent ) {};
@@ -56,6 +79,14 @@ public:
     /// @return new clone of the component
     virtual Component* Clone() const = 0;
 
+    /// @brief  adds this Component to the ComponentSystem for its concrete type
+    /// @warning  called by Entity when the Entity enters the Scene, do not call manually
+    virtual void AddToSystem() = 0;
+
+    /// @brief  removes this Component from the ComponentSystem for its concrete type
+    /// @warning  called by Entity when the Entity leaves the Scene, do not call manually
+    virtual void RemoveFromSystem() = 0;
+
 //-----------------------------------------------------------------------------
 // Public Accessor Methods
 //-----------------------------------------------------------------------------
@@ -63,6 +94,10 @@ public:
     /// @brief  gets the component's type
     /// @return component type
     std::type_index GetType() const { return m_Type; }
+
+    /// @brief  gets the component's type as a readable name
+    /// @return the name a save file refers to this Component by
+    std::string GetTypeName() const { return PrefixlessName( m_Type ); }
 
     /// @brief  sets the parent entity of the component
     /// @param  entity  the parent entity of the component
@@ -78,10 +113,7 @@ public:
 
     /// @brief  gets this Component's name
     /// @return this Component's name
-    std::string GetName() const
-    {
-        return m_Parent->GetName() + "->" + PrefixlessName( m_Type );
-    }
+    std::string GetName() const;
 
 //-----------------------------------------------------------------------------
 // Protected Constructors
