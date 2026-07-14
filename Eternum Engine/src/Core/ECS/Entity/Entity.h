@@ -16,8 +16,7 @@
 // Include Files:
 //-----------------------------------------------------------------------------
 #include <pch.h>
-
-class Component;
+#include <Core/ECS/Component/Component.h>
 
 class Entity {
 
@@ -81,7 +80,12 @@ public:
 
     /// @brief  Adds a Component to this Entity
     /// @param  component the Component to add to this Entity
+    /// @note   if this Entity is already in the Scene the Component is initialized immediately
     void AddComponent( Component* component );
+
+    /// @brief  removes and deletes a Component from this Entity
+    /// @param  component   the Component to remove
+    void RemoveComponent( Component* component );
 
     /// @brief  checks if this Entity is descended from another Entity
     /// @param  ancestor    The entity to check if this Entity is descended from
@@ -100,6 +104,10 @@ public:
     /// @brief  gets whether this Entity is flagged for destruction
     /// @return whether this Entity is flagged for destruction
     bool IsDestroyed() const;
+
+    /// @brief  gets whether this Entity is currently in the Scene
+    /// @return whether Init has run without a matching Exit
+    bool IsInitialized() const;
 
 
     /// @brief  gets this Entity's name
@@ -141,6 +149,15 @@ public:
 //-----------------------------------------------------------------------------
 // Public Copy Methods
 //-----------------------------------------------------------------------------
+
+    /// @brief  writes this Entity, its Components and its children so they can be saved
+    /// @param  data    the object to write into
+    void Write( nlohmann::json& data ) const;
+
+    /// @brief  rebuilds this Entity's Components and children from a save
+    /// @param  data    the object to read from
+    /// @note   Components already on this Entity are replaced
+    void Read( nlohmann::json const& data );
 
     /// @brief  makes a copy of this Entity
     /// @return the new copy of this Entity
@@ -190,6 +207,9 @@ private:
     /// @brief  flag of whether this Entity should be destroyed
     bool m_IsDestroyed = false;
 
+    /// @brief  whether this Entity is currently in the Scene
+    bool m_IsInitialized = false;
+
 //-----------------------------------------------------------------------------
 // Private Methods
 //-----------------------------------------------------------------------------
@@ -205,6 +225,52 @@ private:
 
 
 };
+
+
+//-----------------------------------------------------------------------------
+// Template Method Definitions
+//-----------------------------------------------------------------------------
+
+template < typename ComponentType >
+ComponentType const* Entity::GetComponent() const
+{
+    auto componentIterator = m_Components.find( typeid( ComponentType ) );
+    if ( componentIterator != m_Components.end() )
+    {
+        return static_cast< ComponentType const* >( componentIterator->second );
+    }
+
+    // if exact type not found, fall back to searching for a derived type
+    for ( auto const& [ type, component ] : m_Components )
+    {
+        ComponentType const* found = dynamic_cast< ComponentType const* >( component );
+        if ( found != nullptr )
+        {
+            return found;
+        }
+    }
+
+    // if no derived component found, return nullptr
+    return nullptr;
+}
+
+template < typename ComponentType >
+ComponentType* Entity::GetComponent()
+{
+    return const_cast< ComponentType* >( const_cast< Entity const* >( this )->GetComponent< ComponentType >() );
+}
+
+template < typename ComponentType >
+std::vector< ComponentType* > Entity::GetComponentsOfType()
+{
+    std::vector< ComponentType* > result;
+    for ( auto& [ type, component ] : m_Components )
+    {
+        if ( auto* match = dynamic_cast< ComponentType* >( component ) )
+            result.push_back( match );
+    }
+    return result;
+}
 
 
 #endif //ENTITY_H
