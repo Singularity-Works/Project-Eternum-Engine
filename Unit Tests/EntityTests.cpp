@@ -12,22 +12,21 @@
 #include <gtest/gtest.h>
 #include <Core/ECS/Entity/Entity.h>
 #include <Core/ECS/Component/Component.h>
+#include <Systems/ComponentSystem/ComponentSystem.h>
 
 using namespace std;
 
 // A mock component to test Init and Exit callbacks and cloning
-class CountingComponent final : public Component {
+class CountingComponent final : public ComponentOf<CountingComponent> {
 public:
     int initCount = 0;
     int exitCount = 0;
 
-    CountingComponent()
-        : Component(typeid(CountingComponent))
-    {}
+    CountingComponent() = default;
 
     // Copy constructor used in Clone
     CountingComponent(CountingComponent const& other)
-        : Component(other)
+        : ComponentOf(other)
         , initCount(other.initCount)
         , exitCount(other.exitCount)
     {}
@@ -38,10 +37,6 @@ public:
 
     void OnExit() override {
         ++exitCount;
-    }
-
-    Component* Clone() const override {
-        return new CountingComponent(*this);
     }
 };
 

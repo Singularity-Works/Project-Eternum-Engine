@@ -12,6 +12,7 @@
 #include <gtest/gtest.h>
 #include <Core/ECS/Component/Component.h>
 #include <Core/ECS/Entity/Entity.h>
+#include <Systems/ComponentSystem/ComponentSystem.h>
 
 
 class MockEntity : public Entity {
@@ -25,13 +26,8 @@ public:
 };
 
 // Concrete Test Component
-class TestComponent final : public Component {
-public:
-    TestComponent() : Component(typeid(TestComponent)) {}
-
-    Component* Clone() const override {
-        return new TestComponent(*this);
-    }
+// ComponentOf supplies the type tag, the Clone and the System registration
+class TestComponent final : public ComponentOf<TestComponent> {
 };
 
 // ----------------------------
