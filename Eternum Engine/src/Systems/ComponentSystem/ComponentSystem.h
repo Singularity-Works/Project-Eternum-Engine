@@ -39,9 +39,27 @@ public:
     {
         std::cout << "Number of Components in system: " <<  GetComponents().size() << "\n";
     }
-    void Update(double deltaTime) override {};
-    void FixedUpdate() override {};
-    void Render() override {};
+    void Update(double deltaTime) override
+    {
+        // walk a copy, a Component may add or remove others while it runs
+        std::vector< ComponentType* > components = m_Components;
+        for ( ComponentType* component : components )
+            component->OnUpdate( deltaTime );
+    }
+
+    void FixedUpdate() override
+    {
+        std::vector< ComponentType* > components = m_Components;
+        for ( ComponentType* component : components )
+            component->OnFixedUpdate();
+    }
+
+    void Render() override
+    {
+        std::vector< ComponentType* > components = m_Components;
+        for ( ComponentType* component : components )
+            component->OnRender();
+    }
 
 
 //-----------------------------------------------------------------------------
@@ -67,7 +85,11 @@ public:
     /// @param  component   the component to remove
     void RemoveComponent( ComponentType* component )
     {
-        m_Components.erase( std::find( m_Components.begin(), m_Components.end(), component ) );
+        const auto it = std::find( m_Components.begin(), m_Components.end(), component );
+        if ( it == m_Components.end() )
+            return;
+
+        m_Components.erase( it );
     }
 
 
@@ -95,6 +117,9 @@ private:
         if ( !s_Instance )
         {
             s_Instance.reset(new ComponentSystem<ComponentType>());
+
+            // a ComponentSystem joins the engine the first time anything asks for it
+            SystemRegistry::Instance().Register( s_Instance.get() );
         }
 
         return s_Instance.get();
@@ -118,5 +143,52 @@ inline ComponentSystem< ComponentType >* Components()
     return ComponentSystem< ComponentType >::GetInstance();
 }
 
-REGISTER_COMPONENT_SYSTEM(Component)
+//-----------------------------------------------------------------------------
+// Component Base
+//-----------------------------------------------------------------------------
+
+/// @brief  Base class that wires a Component into the ComponentSystem for its own type.
+///         Derive from this instead of Component and the registration, the type tag
+///         and the Clone are all handled for you.
+/// @tparam Derived the concrete Component type, for example Transform
+template < class Derived >
+class ComponentOf : public Component
+{
+
+public:
+
+    /// @brief  adds this Component to ComponentSystem< Derived >
+    void AddToSystem() override
+    {
+        Components< Derived >()->AddComponent( static_cast< Derived* >( this ) );
+    }
+
+    /// @brief  removes this Component from ComponentSystem< Derived >
+    void RemoveFromSystem() override
+    {
+        Components< Derived >()->RemoveComponent( static_cast< Derived* >( this ) );
+    }
+
+    /// @brief  copies this Component through Derived's copy constructor
+    /// @return new clone of the component
+    Component* Clone() const override
+    {
+        return new Derived( *static_cast< Derived const* >( this ) );
+    }
+
+protected:
+
+    /// @brief  default constructor, tags the Component with its concrete type
+    ComponentOf() :
+        Component( typeid( Derived ) )
+    {}
+
+    /// @brief  copy constructor
+    /// @param  other   the component to copy from
+    ComponentOf( ComponentOf const& other ) :
+        Component( other )
+    {}
+
+};
+
 #endif //COMPONENTSYSTEM_H
