@@ -1,0 +1,118 @@
+/*******************************************************************************************
+* Project Eternum Engine
+* -----------------------------------------------------------------------------------------
+* File: TerminalRenderer
+* Description:
+*     Paints a grid of characters to the console.
+*
+* Author:     Jax Clayton
+* Created:    9/19/2025
+* License:    MIT License (see LICENSE file in project root)
+*******************************************************************************************/
+#ifndef TERMINALRENDERER_H
+#define TERMINALRENDERER_H
+
+#include <pch.h>
+
+class TerminalRenderer
+{
+
+public:
+
+    /// @brief  what colour each character is drawn in, as ansi escape strings
+    using Palette = std::unordered_map< char, const char* >;
+
+    //-----------------------------------------------------------------------------
+    // Session
+    //-----------------------------------------------------------------------------
+
+    /// @brief  takes over the terminal, switching to its own screen and hiding the cursor
+    void BeginSession();
+
+    /// @brief  hands the terminal back exactly as it was found
+    void EndSession();
+
+    //-----------------------------------------------------------------------------
+    // Drawing
+    //-----------------------------------------------------------------------------
+
+    /// @brief  paints a frame
+    /// @param  cells   the characters to draw, row by row, width * height of them
+    /// @param  width   how many cells across
+    /// @param  height  how many cells down
+    /// @param  panel   lines drawn beside the grid, or under it on a narrow terminal
+    /// @param  colors  what colour to draw each character in
+    void Draw( std::vector< char > const& cells, int width, int height,
+               std::vector< std::string > const& panel, Palette const& colors );
+
+    /// @brief  how many columns of space sit between the grid and the panel
+    static constexpr int PANEL_GAP = 3;
+
+    /// @brief  how wide the panel is allowed to be before it will not fit beside the grid
+    static constexpr int PANEL_WIDTH = 34;
+
+    //-----------------------------------------------------------------------------
+    // Escape Codes
+    //-----------------------------------------------------------------------------
+
+    static constexpr const char* RESET            = "\x1b[0m";
+    static constexpr const char* CLEAR_SCREEN     = "\x1b[2J\x1b[H";
+    static constexpr const char* CLEAR_LINE_END   = "\x1b[K";
+    static constexpr const char* HIDE_CURSOR      = "\x1b[?25l";
+    static constexpr const char* SHOW_CURSOR      = "\x1b[?25h";
+    static constexpr const char* ENTER_OWN_SCREEN = "\x1b[?1049h";
+    static constexpr const char* LEAVE_OWN_SCREEN = "\x1b[?1049l";
+
+    //-----------------------------------------------------------------------------
+    // Singleton Pattern
+    //-----------------------------------------------------------------------------
+
+    static TerminalRenderer& Instance()
+    {
+        static TerminalRenderer instance;
+        return instance;
+    }
+
+    TerminalRenderer( TerminalRenderer const& ) = delete;
+    TerminalRenderer& operator=( TerminalRenderer const& ) = delete;
+
+private:
+
+    TerminalRenderer() = default;
+
+    /// @brief  writes one panel line wherever the panel currently lives
+    /// @param  index   which panel line
+    /// @param  text    what to write
+    /// @param  width   how many cells the grid is across
+    /// @param  height  how many cells the grid is down
+    void drawPanelLine( std::size_t index, std::string const& text, int width, int height ) const;
+
+    /// @brief  whether the panel fits beside the grid on this terminal
+    /// @param  width   how many cells the grid is across
+    /// @return true to draw beside, false to drop it underneath
+    bool panelFitsBeside( int width ) const;
+
+    /// @brief  how wide the terminal is, or zero when that cannot be found out
+    static int terminalWidth();
+
+    /// @brief  the escape code a character is drawn with
+    static const char* colorFor( char cell, Palette const& colors );
+
+    /// @brief  an escape code that moves the cursor, rows and columns start at one
+    static std::string moveTo( int row, int column );
+
+    /// @brief  whether the last frame drew the panel beside the grid
+    bool m_PanelWasBeside = true;
+
+    bool m_SessionOpen = false;
+
+};
+
+/// @brief  the shared TerminalRenderer
+/// @return the shared TerminalRenderer
+inline TerminalRenderer& Terminal()
+{
+    return TerminalRenderer::Instance();
+}
+
+#endif //TERMINALRENDERER_H
