@@ -46,6 +46,9 @@ void Runtime::Run() {
         }
 
         Render();
+
+        // nothing in this loop blocks, so without a rest it would spin a core flat out
+        std::this_thread::sleep_for( std::chrono::milliseconds( FRAME_SLEEP_MS ) );
     }
 
     Shutdown();

@@ -80,6 +80,9 @@ public:
 private:
     bool m_Running = false;
 
+    // how long to rest at the end of each frame, roughly a 60 fps cap
+    static constexpr int FRAME_SLEEP_MS = 16;
+
     // Timing
     double m_LastTime = 0.0;
     double m_Accumulator = 0.0;
