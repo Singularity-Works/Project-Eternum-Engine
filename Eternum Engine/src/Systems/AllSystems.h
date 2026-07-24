@@ -13,6 +13,7 @@
 #ifndef ALLSYSTEMS_H
 #define ALLSYSTEMS_H
 
+#include <Systems/Entity System/EntitySystem.h>
 #include <Systems/Input/InputSystem.h>
 #include <Systems/Grid System/GridSystem.h>
 #include <Systems/Dungeon System/DungeonSystem.h>
@@ -20,7 +21,7 @@
 
 // Component Systems
 #include <Core/ECS/Component/Transform/Transform.h>
-
+#include <Core/ECS/Component/Glyph/Glyph.h>
 
 
 #endif //ALLSYSTEMS_H
