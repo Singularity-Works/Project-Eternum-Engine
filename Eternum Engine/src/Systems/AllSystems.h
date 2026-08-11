@@ -22,6 +22,8 @@
 // Component Systems
 #include <Core/ECS/Component/Transform/Transform.h>
 #include <Core/ECS/Component/Glyph/Glyph.h>
+#include <Core/ECS/Component/PlayerController/PlayerController.h>
+#include <Core/ECS/Component/Solid/Solid.h>
 
 
 #endif //ALLSYSTEMS_H
