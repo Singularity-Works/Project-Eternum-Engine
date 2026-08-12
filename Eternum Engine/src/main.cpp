@@ -1,9 +1,74 @@
 #include <pch.h>
 #include "Core/Runtime/Runtime.h"
+#include <Systems/Dungeon System/DungeonSystem.h>
 
-int main()
+namespace
 {
-    srand(static_cast<unsigned>(time(nullptr)));
+    void PrintUsage()
+    {
+        std::cout << "Eternum Engine\n"
+                  << "  --seed <number>   build the first dungeon from a known seed\n"
+                  << "  --gen <name>      bsp, rooms or cave\n"
+                  << "  --shake           start with the camera shake held on\n"
+                  << "  --help            show this\n"
+                  << std::endl;
+    }
+
+    /// @brief  reads the command line and sets up the first dungeon
+    /// @param  argc    how many arguments were given
+    /// @param  argv    the arguments
+    /// @return whether the engine should run, false means we only printed something
+    bool ApplyArguments( const int argc, char** argv )
+    {
+        for ( int i = 1; i < argc; ++i )
+        {
+            const std::string argument = argv[ i ];
+            const bool hasValue = ( i + 1 < argc );
+
+            if ( argument == "--help" || argument == "-h" )
+            {
+                PrintUsage();
+                return false;
+            }
+
+            if ( argument == "--seed" && hasValue )
+            {
+                try
+                {
+                    DungeonSystem::GetInstance()->SetStartupSeed(
+                        static_cast< unsigned >( std::stoul( argv[ ++i ] ) ) );
+                }
+                catch ( std::exception const& )
+                {
+                    std::cout << "Ignoring --seed, \"" << argv[ i ] << "\" is not a number" << std::endl;
+                }
+                continue;
+            }
+
+            if ( argument == "--gen" && hasValue )
+            {
+                const std::string name = argv[ ++i ];
+                const std::size_t index = DungeonSystem::GetInstance()->FindGenerator( name );
+
+                if ( index < DungeonSystem::GetInstance()->GetGeneratorCount() )
+                    DungeonSystem::GetInstance()->SetGenerator( index );
+                else
+                    std::cout << "Ignoring --gen, no generator called \"" << name << "\"" << std::endl;
+
+                continue;
+            }
+
+            std::cout << "Ignoring unknown argument \"" << argument << "\"" << std::endl;
+        }
+
+        return true;
+    }
+}
+
+int main( int argc, char** argv )
+{
+    if ( !ApplyArguments( argc, argv ) )
+        return 0;
 
     RuntimeSystem()->Run();
 
