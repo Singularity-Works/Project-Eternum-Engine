@@ -25,6 +25,11 @@
 #include <Core/ECS/Component/Glyph/Glyph.h>
 #include <Core/ECS/Component/PlayerController/PlayerController.h>
 #include <Core/ECS/Component/Chaser/Chaser.h>
+#include <Core/ECS/Component/Health/Health.h>
+#include <Core/ECS/Component/Attacker/Attacker.h>
+#include <Core/ECS/Component/StatusEffects/StatusEffects.h>
+#include <Core/ECS/Component/Trap/Trap.h>
+#include <Core/ECS/Component/Pickup/Pickup.h>
 #include <Core/ECS/Component/Solid/Solid.h>
 
 
