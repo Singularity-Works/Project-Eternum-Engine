@@ -10,6 +10,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 include_directories(
         "Eternum Engine/src"
         "Eternum Engine/src/Core/pch"
+        "Eternum Engine/third_party"
         "Eternum Engine/third_party/googletest/googletest/include"
 )
 
