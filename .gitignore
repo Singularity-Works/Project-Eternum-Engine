@@ -74,3 +74,7 @@ Testing/Temporary/LastTest.log
 CMakeCache.txt
 cmake_install.cmake
 CTestTestfile.cmake
+
+# Save files the game writes next to itself
+eternum-save.json
+eternum-save.msgpack
