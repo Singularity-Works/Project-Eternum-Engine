@@ -1,6 +1,7 @@
 #include <pch.h>
 #include "Core/Runtime/Runtime.h"
 #include <Systems/Dungeon System/DungeonSystem.h>
+#include <Systems/Grid System/GridSystem.h>
 
 namespace
 {
@@ -42,6 +43,12 @@ namespace
                 {
                     std::cout << "Ignoring --seed, \"" << argv[ i ] << "\" is not a number" << std::endl;
                 }
+                continue;
+            }
+
+            if ( argument == "--shake" )
+            {
+                GridSystem::GetInstance()->SetContinuousShake( true );
                 continue;
             }
 
