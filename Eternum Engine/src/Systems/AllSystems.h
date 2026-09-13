@@ -17,6 +17,9 @@
 #include <Systems/Input/InputSystem.h>
 #include <Systems/Pathfinding/PathfindingSystem.h>
 #include <Systems/Grid System/GridSystem.h>
+#include <Systems/Hud/HudSystem.h>
+#include <Systems/Save/SaveSystem.h>
+#include <Systems/Event/EventSystem.h>
 #include <Systems/Dungeon System/DungeonSystem.h>
 
 
@@ -31,6 +34,7 @@
 #include <Core/ECS/Component/Trap/Trap.h>
 #include <Core/ECS/Component/Pickup/Pickup.h>
 #include <Core/ECS/Component/Solid/Solid.h>
+
 
 
 #endif //ALLSYSTEMS_H
