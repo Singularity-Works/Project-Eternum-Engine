@@ -3,7 +3,11 @@
 * -----------------------------------------------------------------------------------------
 * File: TerminalRenderer
 * Description:
-*     Paints a grid of characters to the console.
+*     Paints a grid of characters to the console without flicker.
+*
+*     The whole frame is built into one string and written in a single call, so a frame
+*     never lands half drawn. Colour codes are only emitted when the colour actually
+*     changes instead of once per cell.
 *
 * Author:     Jax Clayton
 * Created:    9/19/2025
@@ -42,6 +46,7 @@ public:
     /// @param  height  how many cells down
     /// @param  panel   lines drawn beside the grid, or under it on a narrow terminal
     /// @param  colors  what colour to draw each character in
+    /// @note   panel lines may carry their own escape codes, they are written as given
     void Draw( std::vector< char > const& cells, int width, int height,
                std::vector< std::string > const& panel, Palette const& colors );
 
@@ -80,12 +85,18 @@ private:
 
     TerminalRenderer() = default;
 
+    /// @brief  builds a complete frame
+    void appendFullFrame( std::string& out, std::vector< char > const& cells, int width, int height,
+                          std::vector< std::string > const& panel, Palette const& colors ) const;
+
     /// @brief  writes one panel line wherever the panel currently lives
+    /// @param  out     the frame being built
     /// @param  index   which panel line
     /// @param  text    what to write
     /// @param  width   how many cells the grid is across
     /// @param  height  how many cells the grid is down
-    void drawPanelLine( std::size_t index, std::string const& text, int width, int height ) const;
+    void appendPanelLine( std::string& out, std::size_t index, std::string const& text,
+                          int width, int height ) const;
 
     /// @brief  whether the panel fits beside the grid on this terminal
     /// @param  width   how many cells the grid is across

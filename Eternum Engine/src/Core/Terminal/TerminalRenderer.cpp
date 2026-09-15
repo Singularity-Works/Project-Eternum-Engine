@@ -3,7 +3,7 @@
 * -----------------------------------------------------------------------------------------
 * File: TerminalRenderer
 * Description:
-*     Paints a grid of characters to the console.
+*     Paints a grid of characters to the console without flicker.
 *
 * Author:     Jax Clayton
 * Created:    9/19/2025
@@ -52,9 +52,35 @@ void TerminalRenderer::Draw( std::vector< char > const& cells, const int width, 
     if ( cells.size() < expected )
         return;
 
+    // the layout decision has to be in place before any panel line is positioned
     m_PanelWasBeside = panelFitsBeside( width );
 
-    std::cout << CLEAR_SCREEN;
+    std::string out;
+    out.reserve( expected * 2 + 1024 );
+
+    appendFullFrame( out, cells, width, height, panel, colors );
+
+    // park the cursor below everything so a stray redraw cannot land in the map
+    const int parkRow = m_PanelWasBeside
+        ? std::max( height, static_cast< int >( panel.size() ) ) + 1
+        : height + static_cast< int >( panel.size() ) + 1;
+
+    out += RESET;
+    out += moveTo( parkRow, 1 );
+
+    // one write, a frame that arrives in pieces is what the flicker was
+    std::cout.write( out.data(), static_cast< std::streamsize >( out.size() ) );
+    std::cout.flush();
+}
+
+void TerminalRenderer::appendFullFrame( std::string& out, std::vector< char > const& cells,
+                                        const int width, const int height,
+                                        std::vector< std::string > const& panel,
+                                        Palette const& colors ) const
+{
+    out += CLEAR_SCREEN;
+
+    const char* current = nullptr;
 
     for ( int y = 0; y < height; ++y )
     {
@@ -63,25 +89,30 @@ void TerminalRenderer::Draw( std::vector< char > const& cells, const int width, 
         for ( int x = 0; x < width; ++x )
         {
             const char cell = cells[ rowStart + x ];
-            std::cout << colorFor( cell, colors ) << cell;
+            const char* color = colorFor( cell, colors );
+
+            // only spend bytes on a colour code when the colour actually changes
+            if ( color != current )
+            {
+                out += color;
+                current = color;
+            }
+
+            out += cell;
         }
 
-        std::cout << RESET << "\r\n";
+        out += RESET;
+        current = RESET;
+        out += "\r\n";
     }
 
     for ( std::size_t i = 0; i < panel.size(); ++i )
-        drawPanelLine( i, panel[ i ], width, height );
-
-    // park the cursor below everything so a stray redraw cannot land in the map
-    const int parkRow = m_PanelWasBeside
-        ? std::max( height, static_cast< int >( panel.size() ) ) + 1
-        : height + static_cast< int >( panel.size() ) + 1;
-
-    std::cout << RESET << moveTo( parkRow, 1 ) << std::flush;
+        appendPanelLine( out, i, panel[ i ], width, height );
 }
 
-void TerminalRenderer::drawPanelLine( const std::size_t index, std::string const& text,
-                                      const int width, const int height ) const
+void TerminalRenderer::appendPanelLine( std::string& out, const std::size_t index,
+                                        std::string const& text,
+                                        const int width, const int height ) const
 {
     const int row = m_PanelWasBeside
         ? static_cast< int >( index ) + 1
@@ -89,7 +120,10 @@ void TerminalRenderer::drawPanelLine( const std::size_t index, std::string const
 
     const int column = m_PanelWasBeside ? width + PANEL_GAP : 1;
 
-    std::cout << moveTo( row, column ) << RESET << text << CLEAR_LINE_END;
+    out += moveTo( row, column );
+    out += RESET;
+    out += text;
+    out += CLEAR_LINE_END;
 }
 
 bool TerminalRenderer::panelFitsBeside( const int width ) const
