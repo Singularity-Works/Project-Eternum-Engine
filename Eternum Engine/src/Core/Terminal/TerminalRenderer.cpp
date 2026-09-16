@@ -26,6 +26,7 @@ void TerminalRenderer::BeginSession()
     std::cout << ENTER_OWN_SCREEN << HIDE_CURSOR << std::flush;
 
     m_SessionOpen = true;
+    m_NeedsFullRedraw = true;
 }
 
 void TerminalRenderer::EndSession()
@@ -36,6 +37,11 @@ void TerminalRenderer::EndSession()
     std::cout << RESET << SHOW_CURSOR << LEAVE_OWN_SCREEN << std::flush;
 
     m_SessionOpen = false;
+    m_NeedsFullRedraw = true;
+    m_PreviousCells.clear();
+    m_PreviousPanel.clear();
+    m_Width = 0;
+    m_Height = 0;
 }
 
 //-----------------------------------------------------------------------------
@@ -52,25 +58,46 @@ void TerminalRenderer::Draw( std::vector< char > const& cells, const int width, 
     if ( cells.size() < expected )
         return;
 
+    const bool beside = panelFitsBeside( width );
+
+    const bool full = m_NeedsFullRedraw
+                   || width != m_Width
+                   || height != m_Height
+                   || beside != m_PanelWasBeside
+                   || m_PreviousCells.size() != expected;
+
     // the layout decision has to be in place before any panel line is positioned
-    m_PanelWasBeside = panelFitsBeside( width );
+    m_PanelWasBeside = beside;
 
     std::string out;
-    out.reserve( expected * 2 + 1024 );
+    out.reserve( full ? expected * 2 + 1024 : 2048 );
 
-    appendFullFrame( out, cells, width, height, panel, colors );
+    if ( full )
+        appendFullFrame( out, cells, width, height, panel, colors );
+    else
+        appendDiffFrame( out, cells, width, height, panel, colors );
 
-    // park the cursor below everything so a stray redraw cannot land in the map
-    const int parkRow = m_PanelWasBeside
-        ? std::max( height, static_cast< int >( panel.size() ) ) + 1
-        : height + static_cast< int >( panel.size() ) + 1;
+    // a diff frame is empty when nothing moved, which is the common case
+    if ( !out.empty() )
+    {
+        // park the cursor below everything so a stray redraw cannot land in the map
+        const int parkRow = beside
+            ? std::max( height, static_cast< int >( panel.size() ) ) + 1
+            : height + static_cast< int >( panel.size() ) + 1;
 
-    out += RESET;
-    out += moveTo( parkRow, 1 );
+        out += RESET;
+        out += moveTo( parkRow, 1 );
 
-    // one write, a frame that arrives in pieces is what the flicker was
-    std::cout.write( out.data(), static_cast< std::streamsize >( out.size() ) );
-    std::cout.flush();
+        // one write, a frame that arrives in pieces is what the flicker was
+        std::cout.write( out.data(), static_cast< std::streamsize >( out.size() ) );
+        std::cout.flush();
+    }
+
+    m_PreviousCells.assign( cells.begin(), cells.begin() + static_cast< std::ptrdiff_t >( expected ) );
+    m_PreviousPanel = panel;
+    m_Width = width;
+    m_Height = height;
+    m_NeedsFullRedraw = false;
 }
 
 void TerminalRenderer::appendFullFrame( std::string& out, std::vector< char > const& cells,
@@ -108,6 +135,77 @@ void TerminalRenderer::appendFullFrame( std::string& out, std::vector< char > co
 
     for ( std::size_t i = 0; i < panel.size(); ++i )
         appendPanelLine( out, i, panel[ i ], width, height );
+}
+
+void TerminalRenderer::appendDiffFrame( std::string& out, std::vector< char > const& cells,
+                                        const int width, const int height,
+                                        std::vector< std::string > const& panel,
+                                        Palette const& colors ) const
+{
+    const char* current = nullptr;
+
+    for ( int y = 0; y < height; ++y )
+    {
+        const int rowStart = y * width;
+        int x = 0;
+
+        while ( x < width )
+        {
+            if ( cells[ rowStart + x ] == m_PreviousCells[ rowStart + x ] )
+            {
+                ++x;
+                continue;
+            }
+
+            // stretch the run over short unchanged gaps, repainting a few cells beats
+            // paying for another cursor move
+            int runEnd = x + 1;
+            int gap = 0;
+
+            for ( int probe = runEnd; probe < width; ++probe )
+            {
+                if ( cells[ rowStart + probe ] != m_PreviousCells[ rowStart + probe ] )
+                {
+                    runEnd = probe + 1;
+                    gap = 0;
+                }
+                else if ( ++gap > MAX_GAP )
+                {
+                    break;
+                }
+            }
+
+            out += moveTo( y + 1, x + 1 );
+
+            for ( int cell = x; cell < runEnd; ++cell )
+            {
+                const char symbol = cells[ rowStart + cell ];
+                const char* color = colorFor( symbol, colors );
+
+                if ( color != current )
+                {
+                    out += color;
+                    current = color;
+                }
+
+                out += symbol;
+            }
+
+            x = runEnd;
+        }
+    }
+
+    for ( std::size_t i = 0; i < panel.size(); ++i )
+    {
+        if ( i < m_PreviousPanel.size() && m_PreviousPanel[ i ] == panel[ i ] )
+            continue;
+
+        appendPanelLine( out, i, panel[ i ], width, height );
+    }
+
+    // wipe any panel line that is no longer used
+    for ( std::size_t i = panel.size(); i < m_PreviousPanel.size(); ++i )
+        appendPanelLine( out, i, "", width, height );
 }
 
 void TerminalRenderer::appendPanelLine( std::string& out, const std::size_t index,

@@ -5,9 +5,11 @@
 * Description:
 *     Paints a grid of characters to the console without flicker.
 *
-*     The whole frame is built into one string and written in a single call, so a frame
-*     never lands half drawn. Colour codes are only emitted when the colour actually
-*     changes instead of once per cell.
+*     Three things make it steady. The whole frame is built into one string and written in
+*     a single call, so a frame never lands half drawn. Colour codes are only emitted when
+*     the colour actually changes instead of once per cell. And after the first frame only
+*     the cells that differ from the last one are repainted, so a step costs two cells
+*     instead of the whole map.
 *
 * Author:     Jax Clayton
 * Created:    9/19/2025
@@ -36,11 +38,15 @@ public:
     /// @brief  hands the terminal back exactly as it was found
     void EndSession();
 
+    /// @brief  forces the next frame to be painted in full instead of diffed
+    /// @note   needed after anything outside this class writes to the console
+    void ForceFullRedraw() { m_NeedsFullRedraw = true; }
+
     //-----------------------------------------------------------------------------
     // Drawing
     //-----------------------------------------------------------------------------
 
-    /// @brief  paints a frame
+    /// @brief  paints a frame, repainting only what changed since the last one
     /// @param  cells   the characters to draw, row by row, width * height of them
     /// @param  width   how many cells across
     /// @param  height  how many cells down
@@ -85,8 +91,12 @@ private:
 
     TerminalRenderer() = default;
 
-    /// @brief  builds a complete frame
+    /// @brief  builds a complete frame, used for the first one and after a size change
     void appendFullFrame( std::string& out, std::vector< char > const& cells, int width, int height,
+                          std::vector< std::string > const& panel, Palette const& colors ) const;
+
+    /// @brief  builds only the difference from the last frame
+    void appendDiffFrame( std::string& out, std::vector< char > const& cells, int width, int height,
                           std::vector< std::string > const& panel, Palette const& colors ) const;
 
     /// @brief  writes one panel line wherever the panel currently lives
@@ -112,9 +122,24 @@ private:
     /// @brief  an escape code that moves the cursor, rows and columns start at one
     static std::string moveTo( int row, int column );
 
+    /// @brief  how many unchanged cells are worth repainting rather than moving the cursor over
+    /// @note   a cursor move costs about eight bytes, a cell costs one, so hopping a short
+    ///         gap is cheaper than jumping it
+    static constexpr int MAX_GAP = 6;
+
+    /// @brief  the frame currently on screen
+    std::vector< char > m_PreviousCells;
+
+    /// @brief  the panel currently on screen
+    std::vector< std::string > m_PreviousPanel;
+
     /// @brief  whether the last frame drew the panel beside the grid
     bool m_PanelWasBeside = true;
 
+    int m_Width = 0;
+    int m_Height = 0;
+
+    bool m_NeedsFullRedraw = true;
     bool m_SessionOpen = false;
 
 };
