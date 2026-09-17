@@ -13,6 +13,17 @@
 #include <pch.h>
 #include "TerminalRenderer.h"
 
+#ifndef _WIN32
+    #include <sys/ioctl.h>
+#endif
+
+#ifdef _WIN32
+    // older windows sdks do not declare this, the value is stable
+    #ifndef ENABLE_VIRTUAL_TERMINAL_PROCESSING
+        #define ENABLE_VIRTUAL_TERMINAL_PROCESSING 0x0004
+    #endif
+#endif
+
 //-----------------------------------------------------------------------------
 // Session
 //-----------------------------------------------------------------------------
@@ -21,6 +32,14 @@ void TerminalRenderer::BeginSession()
 {
     if ( m_SessionOpen )
         return;
+
+#ifdef _WIN32
+    // a legacy console prints the escape codes as text until this is switched on
+    const HANDLE output = GetStdHandle( STD_OUTPUT_HANDLE );
+    DWORD mode = 0;
+    if ( output != INVALID_HANDLE_VALUE && GetConsoleMode( output, &mode ) )
+        SetConsoleMode( output, mode | ENABLE_VIRTUAL_TERMINAL_PROCESSING );
+#endif
 
     // the game gets a screen of its own, so quitting leaves the shell scrollback intact
     std::cout << ENTER_OWN_SCREEN << HIDE_CURSOR << std::flush;
@@ -237,6 +256,7 @@ bool TerminalRenderer::panelFitsBeside( const int width ) const
 
 int TerminalRenderer::terminalWidth()
 {
+#ifdef _WIN32
     const HANDLE output = GetStdHandle( STD_OUTPUT_HANDLE );
     if ( output == nullptr || output == INVALID_HANDLE_VALUE )
         return 0;
@@ -246,6 +266,13 @@ int TerminalRenderer::terminalWidth()
         return 0;
 
     return info.srWindow.Right - info.srWindow.Left + 1;
+#else
+    winsize size = {};
+    if ( ioctl( STDOUT_FILENO, TIOCGWINSZ, &size ) != 0 )
+        return 0;
+
+    return size.ws_col;
+#endif
 }
 
 //-----------------------------------------------------------------------------

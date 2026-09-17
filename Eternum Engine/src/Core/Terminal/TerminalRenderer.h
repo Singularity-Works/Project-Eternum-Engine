@@ -33,6 +33,8 @@ public:
     //-----------------------------------------------------------------------------
 
     /// @brief  takes over the terminal, switching to its own screen and hiding the cursor
+    /// @note   on windows this also turns on escape code handling, which older consoles
+    ///         leave off by default
     void BeginSession();
 
     /// @brief  hands the terminal back exactly as it was found
