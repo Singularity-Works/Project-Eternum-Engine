@@ -46,6 +46,59 @@ namespace
 
         return Key::UNKNOWN;
     }
+#else
+    /// @brief  turns a raw code into a Key, folding lowercase up to uppercase
+    /// @param  raw the code that was read
+    /// @return the matching Key
+    Key NormalizeKey( int raw )
+    {
+        if ( raw >= 'a' && raw <= 'z' )
+            raw -= ( 'a' - 'A' );
+
+        return static_cast< Key >( raw );
+    }
+
+    /// @brief  reads one key event from the terminal
+    /// @return the key, or INVALID when nothing was waiting
+    Key ReadKeyEvent()
+    {
+        termios orig, mod;
+
+        // save & set noncanonical, no-echo
+        tcgetattr( STDIN_FILENO, &orig );
+        mod = orig;
+        mod.c_lflag &= ~( ICANON | ECHO );
+        tcsetattr( STDIN_FILENO, TCSANOW, &mod );
+
+        // nonblocking
+        const int flags = fcntl( STDIN_FILENO, F_GETFL, 0 );
+        fcntl( STDIN_FILENO, F_SETFL, flags | O_NONBLOCK );
+
+        const int raw = getchar();
+
+        // the arrow keys arrive as escape, bracket, letter
+        Key arrow = Key::UNKNOWN;
+        if ( raw == 27 && getchar() == '[' )
+        {
+            switch ( getchar() )
+            {
+                case 'A': arrow = Key::ARROW_UP;    break;
+                case 'B': arrow = Key::ARROW_DOWN;  break;
+                case 'C': arrow = Key::ARROW_RIGHT; break;
+                case 'D': arrow = Key::ARROW_LEFT;  break;
+                default:  break;
+            }
+        }
+
+        // restore
+        tcsetattr( STDIN_FILENO, TCSANOW, &orig );
+        fcntl( STDIN_FILENO, F_SETFL, flags );
+
+        if ( arrow != Key::UNKNOWN ) return arrow;
+        if ( raw == EOF ) return Key::INVALID;
+
+        return NormalizeKey( raw );
+    }
 #endif
 }
 
@@ -178,6 +231,23 @@ void InputSystem::pollKeyboard(const double dt)
 
         pending -= read;
     }
+#else
+    // wind every key down, anything that reports again this frame gets topped back up
+    for (auto& [key, remaining] : m_HeldRemaining)
+        remaining -= dt;
+
+    // several events can arrive in one frame, take them all
+    for (int reads = 0; reads < 8; ++reads)
+    {
+        const Key key = ReadKeyEvent();
+        if (key == Key::INVALID || key == Key::UNKNOWN)
+            break;
+
+        m_HeldRemaining[key] = HOLD_WINDOW;
+    }
+
+    for (const auto& [key, remaining] : m_HeldRemaining)
+        m_CurrentState[key] = remaining > 0.0;
 #endif
 }
 
