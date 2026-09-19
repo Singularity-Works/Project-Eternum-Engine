@@ -60,21 +60,31 @@ inline unsigned GetUniqueId()
     return nextId++;
 }
 
-inline std::string PrefixlessName(const std::type_index& type) {
-    const std::string name = type.name();
-
-    size_t i = 0;
-    while (i < name.size() && std::isdigit(name[i])) {
-        ++i;
-    }
-
-    return name.substr(i);
-}
-
-
 inline bool StartsWith(const std::string& str, const std::string& prefix) {
     return str.size() >= prefix.size() &&
            std::equal(prefix.begin(), prefix.end(), str.begin());
+}
+
+
+inline std::string PrefixlessName(const std::type_index& type) {
+    std::string name = type.name();
+
+    // gcc mangles the name length onto the front
+    size_t i = 0;
+    while (i < name.size() && std::isdigit(static_cast<unsigned char>(name[i]))) {
+        ++i;
+    }
+    name = name.substr(i);
+
+    // msvc spells it out instead
+    static const std::string keywords[] = { "class ", "struct ", "enum ", "union " };
+    for (const std::string& keyword : keywords) {
+        if (StartsWith(name, keyword)) {
+            return name.substr(keyword.size());
+        }
+    }
+
+    return name;
 }
 
 
