@@ -1,0 +1,116 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Build ${{ matrix.label }}
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        shell: bash
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+            label: Linux
+            # carry libstdc++ along, the far end has no reason to own a matching toolchain
+            configure: -DCMAKE_EXE_LINKER_FLAGS="-static-libstdc++ -static-libgcc"
+            asset: eternum-engine-linux-x64.tar.gz
+          - os: windows-latest
+            label: Windows
+            configure: ""
+            asset: eternum-engine-windows-x64.exe
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure CMake
+        run: cmake -B build -DCMAKE_BUILD_TYPE=Release ${{ matrix.configure }}
+
+      - name: Build
+        run: cmake --build build --config Release
+
+      # nothing ships that cannot pass its own tests
+      - name: Run Tests
+        run: ctest --test-dir build --build-config Release --output-on-failure
+
+      - name: Package
+        run: |
+          if [ "$RUNNER_OS" = "Windows" ]; then
+            cp "build/Release/eternum-engine.exe" "${{ matrix.asset }}"
+          else
+            # a release asset carries no permissions, tar is what keeps the execute bit
+            tar -czf "${{ matrix.asset }}" -C build eternum-engine
+            echo "built against $(ldd --version | head -1)"
+          fi
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.asset }}
+          path: ${{ matrix.asset }}
+          if-no-files-found: error
+
+  publish:
+    name: Publish the release
+    needs: build
+    if: startsWith(github.ref, 'refs/tags/')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: assets
+          merge-multiple: true
+
+      - name: Write the notes
+        run: |
+          cat > notes.md <<'NOTES'
+          Download the one for your machine and run it from a terminal. Nothing to install.
+
+          **Windows** grab `eternum-engine-windows-x64.exe` and run it. Windows will warn you
+          about an unsigned binary from the internet, which is exactly what it is.
+
+          **Linux** grab `eternum-engine-linux-x64.tar.gz`, then:
+
+          ```
+          tar -xzf eternum-engine-linux-x64.tar.gz
+          ./eternum-engine
+          ```
+
+          Built on the current Ubuntu runner, so it wants a reasonably recent glibc. If it
+          refuses to start, build from source instead, it only needs CMake and a C++20 compiler.
+
+          Give it a window about 100 columns wide or the side panel drops underneath the map.
+
+          ### Controls
+
+          | Key | Action |
+          | --- | --- |
+          | WASD or arrows | Move, hold to walk |
+          | M | New dungeon |
+          | 1 2 3 | Switch generator |
+          | P | Switch pathfinding algorithm |
+          | V | Show or hide enemy routes |
+          | K | Hold the camera shake on |
+          | F5 / F9 | Save / load |
+          | ESC | Quit |
+
+          Run it with `--help` for the command line flags.
+          NOTES
+
+      - name: Publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" assets/* \
+            --repo "$GITHUB_REPOSITORY" \
+            --title "Eternum Engine $GITHUB_REF_NAME" \
+            --notes-file notes.md \
+            --generate-notes

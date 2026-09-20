@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(EternumEngine)
+project(EternumEngine VERSION 0.1.0)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -40,6 +40,7 @@ target_precompile_headers(eternum-engine-lib PRIVATE "Eternum Engine/src/Core/pc
 # --------------------------------------------------------
 add_executable(eternum-engine "Eternum Engine/src/main.cpp")
 target_link_libraries(eternum-engine PRIVATE eternum-engine-lib)
+target_compile_definitions(eternum-engine PRIVATE ETERNUM_VERSION="${PROJECT_VERSION}")
 
 # --------------------------------------------------------
 # GoogleTest

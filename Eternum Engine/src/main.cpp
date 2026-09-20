@@ -4,15 +4,21 @@
 #include <Systems/Dungeon System/DungeonSystem.h>
 #include <Systems/Grid System/GridSystem.h>
 
+// cmake passes the real one, this only covers a build put together by hand
+#ifndef ETERNUM_VERSION
+    #define ETERNUM_VERSION "0.0.0-dev"
+#endif
+
 namespace
 {
     void PrintUsage()
     {
-        std::cout << "Eternum Engine\n"
+        std::cout << "Eternum Engine " << ETERNUM_VERSION << "\n"
                   << "  --seed <number>   build the first dungeon from a known seed\n"
                   << "  --gen <name>      bsp, rooms or cave\n"
                   << "  --shake           start with the camera shake held on\n"
                   << "  --verbose         say what the engine is doing while it starts\n"
+                  << "  --version         print the version and exit\n"
                   << "  --help            show this\n"
                   << std::endl;
     }
@@ -46,6 +52,12 @@ namespace
                     std::cout << "Ignoring --seed, \"" << argv[ i ] << "\" is not a number" << std::endl;
                 }
                 continue;
+            }
+
+            if ( argument == "--version" )
+            {
+                std::cout << "Eternum Engine " << ETERNUM_VERSION << std::endl;
+                return false;
             }
 
             if ( argument == "--verbose" || argument == "-v" )

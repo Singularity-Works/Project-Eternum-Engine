@@ -5,6 +5,7 @@ dungeons, and the things in it work out where you are and come after you.
 
 [![CMake Build](https://github.com/Singularity-Works/Project-Eternum-Engine/actions/workflows/ci.yml/badge.svg)](https://github.com/Singularity-Works/Project-Eternum-Engine/actions/workflows/ci.yml)
 [![Windows CMake Build](https://github.com/Singularity-Works/Project-Eternum-Engine/actions/workflows/ci-windows.yml/badge.svg)](https://github.com/Singularity-Works/Project-Eternum-Engine/actions/workflows/ci-windows.yml)
+[![Latest release](https://img.shields.io/github/v/release/Singularity-Works/Project-Eternum-Engine)](https://github.com/Singularity-Works/Project-Eternum-Engine/releases/latest)
 
 ![The engine running](docs/images/hero.png)
 
@@ -200,8 +201,12 @@ The ones worth looking at are the property tests rather than the getter checks:
 
 ## Building
 
-Needs CMake 3.16+ and a compiler with C++20. GoogleTest and nlohmann/json are both vendored, so
-there is nothing to fetch.
+There are prebuilt binaries for Windows and Linux on the
+[releases page](https://github.com/Singularity-Works/Project-Eternum-Engine/releases/latest).
+Download one, run it from a terminal, there is nothing to install.
+
+To build it yourself you need CMake 3.16+ and a compiler with C++20. GoogleTest and
+nlohmann/json are both vendored, so there is nothing to fetch.
 
 ```bash
 git clone https://github.com/Singularity-Works/Project-Eternum-Engine.git
@@ -222,6 +227,7 @@ Then run it:
 | `--gen <name>` | `bsp`, `rooms` or `cave` |
 | `--shake` | Start with the camera shake held on, to look at it |
 | `--verbose` | Say what the engine is doing while it starts, off by default |
+| `--version` | Print the version and exit |
 | `--help` | Print the flags and exit |
 
 ### Controls

@@ -16,5 +16,6 @@ jobs:
         run: cmake -B build -DCMAKE_BUILD_TYPE=Release
       - name: Build
         run: cmake --build build --config Release
+      # without the config ctest finds nothing on a multi config generator and still exits green
       - name: Run Tests
-        run: ctest --test-dir build
+        run: ctest --test-dir build --build-config Release --output-on-failure
