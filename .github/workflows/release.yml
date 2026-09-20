@@ -52,6 +52,16 @@ jobs:
             echo "built against $(ldd --version | head -1)"
           fi
 
+      # prove the thing we are about to hand out actually starts
+      - name: Smoke test the package
+        run: |
+          if [ "$RUNNER_OS" = "Windows" ]; then
+            ./"${{ matrix.asset }}" --version
+          else
+            tar -xzf "${{ matrix.asset }}" -C "$RUNNER_TEMP"
+            "$RUNNER_TEMP/eternum-engine" --version
+          fi
+
       - uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.asset }}
