@@ -15,6 +15,7 @@
 #define SYSTEM_H
 
 #include <pch.h>
+#include <Core/Log/Log.h>
 
 /// @brief Base class for all systems in the Eternum Engine.
 ///
@@ -36,7 +37,7 @@ public:
     // Called once when the system is created
     virtual void Init()
     {
-        std::cout << "Initializing system: " << m_Name << std::endl;
+        LogVerbose("Initializing system: " + m_Name);
     }
 
     // Called every frame before fixed updates
@@ -51,7 +52,7 @@ public:
     // Called when the system is shutting down
     virtual void Shutdown()
     {
-        std::cout << "Shutdown system: " << m_Name << std::endl;
+        LogVerbose("Shutdown system: " + m_Name);
     }
 
     // Returns the name of the system for identification

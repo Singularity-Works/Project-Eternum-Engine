@@ -1,5 +1,6 @@
 #include <pch.h>
 #include "Core/Runtime/Runtime.h"
+#include <Core/Log/Log.h>
 #include <Systems/Dungeon System/DungeonSystem.h>
 #include <Systems/Grid System/GridSystem.h>
 
@@ -11,6 +12,7 @@ namespace
                   << "  --seed <number>   build the first dungeon from a known seed\n"
                   << "  --gen <name>      bsp, rooms or cave\n"
                   << "  --shake           start with the camera shake held on\n"
+                  << "  --verbose         say what the engine is doing while it starts\n"
                   << "  --help            show this\n"
                   << std::endl;
     }
@@ -43,6 +45,12 @@ namespace
                 {
                     std::cout << "Ignoring --seed, \"" << argv[ i ] << "\" is not a number" << std::endl;
                 }
+                continue;
+            }
+
+            if ( argument == "--verbose" || argument == "-v" )
+            {
+                SetVerboseLogging( true );
                 continue;
             }
 

@@ -30,7 +30,7 @@ class SystemRegistry
                 }
             }
 
-            std::cout << "Registering system: " << sys->GetName() << std::endl;
+            // this runs before main, so there is no flag to check yet and nothing to say
             systems.push_back(sys);
         }
 

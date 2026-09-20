@@ -61,13 +61,13 @@ void Runtime::Stop() {
 
 // Initializes the runtime, setting up necessary systems and resources
 void Runtime::Init() {
-    std::cout << "Initializing Runtime..." << std::endl;
+    LogVerbose("Initializing Runtime...");
 
     // Print the user's system name windows or linux
 #ifdef _WIN32
-    std::cout << "Running on Windows" << std::endl;
+    LogVerbose("Running on Windows");
 #else
-    std::cout << "Running on Linux" << std::endl;
+    LogVerbose("Running on Linux");
 #endif
 
    auto systems = Registry()->GetSystems();
@@ -82,7 +82,7 @@ void Runtime::Init() {
 
 // Shuts down the runtime, cleaning up resources and shutting down systems
 void Runtime::Shutdown() {
-    std::cout << "Shutting down..." << std::endl;
+    LogVerbose("Shutting down...");
 
     auto systems = Registry()->GetSystems();
 

@@ -37,7 +37,8 @@ class ComponentSystem : public System
 public:
     void Init() override
     {
-        std::cout << "Number of Components in system: " <<  GetComponents().size() << "\n";
+        System::Init();
+        LogVerbose( "  holding " + std::to_string( GetComponents().size() ) + " components" );
     }
     void Update(double deltaTime) override
     {
